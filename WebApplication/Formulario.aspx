@@ -4,22 +4,94 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
+<%string ID = Request.QueryString["ID"];
+    // si hay parametro, se presiono MODIFICAR: Cargara los datos...
+    if(ID != null)
+    {
 
-    <div class="col" style="width: 600px; position: relative; left: 30%; width:500px">
-        <div style="">
-            <h1 style="position:relative;left:75px">Agregar Producto</h1>
+        foreach (var item in Articulos)
+        {
+            if(item.Id.ToString() == ID.ToString())
+            {
+                
+                barracodigo.Text = item.Codigo;
+                barraproducto.Text = item.Nombre;
+                barraimagen.Text = item.Imagen;
+                barracategoria.Text = item.Categoria;
+                barramarca.Text = item.Marca;
+                barraprecio.Text = item.Precio.ToString();
+                barradescripcion.Text = item.Descripcion;
+
+
+            }
+        }
+
+    }
+
+
+    %>
+
+    <script>
+        //Validacion con JavaScript
+        function validacion() {
+            const codigo = document.getElementById("barracodigo");
+            const producto = document.getElementById("barraproducto");
+            const precio = document.getElementById("barraprecio");
+            const imagen = document.getElementById("barraimagen");
+
+
+            if ((codigo.value == "" || producto.value == "" || precio.value == "" || imagen.value == "")) {
+
+                if (codigo.value == "") {
+                    codigo.classList.add("is-invalid");
+                    producto.classList.remove("is-invalid");
+                    precio.classList.remove("is-invalid");
+                    imagen.classList.remove("is-invalid");
+
+                    return false;
+
+                } else if (producto.value == "") {
+                    producto.classList.add("is-invalid");
+                    imagen.classList.remove("is-invalid");
+                    precio.classList.remove("is-invalid");
+                    codigo.classList.remove("is-invalid");
+                    return false;
+
+                } else if (imagen.value == "") {
+                    imagen.classList.add("is-invalid");
+                    precio.classList.remove("is-invalid");
+                    codigo.classList.remove("is-invalid");
+                    producto.classList.remove("is-invalid");
+                    return false;
+
+                } else if (precio.value == "") {
+                    precio.classList.add("is-invalid");
+                    producto.classList.remove("is-invalid");
+                    codigo.classList.remove("is-invalid");
+                    imagen.classList.remove("is-invalid");
+
+                    return false;
+                }
+
+            }
+        }
+    </script>
+
+    <div class="col" style=" position: relative; left: 30%; width: 500px">
+        <div >
+            <h1 style="position: relative; left: 75px">Agregar Producto</h1>
             <br />
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Codigo</label>
-                <asp:TextBox runat="server" CssClass="form-control" ID="barracodigo" />
+                <asp:TextBox runat="server" CssClass="form-control" ID="barracodigo" ClientIDMode="Static" />
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Producto</label>
-                <asp:TextBox runat="server" type="text" CssClass="form-control" ID="barraproducto" />
+                <asp:TextBox runat="server" type="text" CssClass="form-control" ID="barraproducto" ClientIDMode="Static" />
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Imagen(Url)</label>
-                <asp:TextBox runat="server" type="url" CssClass="form-control" ID="barraimagen" />
+                <asp:TextBox runat="server" type="url" CssClass="form-control" ID="barraimagen" ClientIDMode="Static" />
             </div>
             <div class="mb-3">
                 <label class="form-label">Categoria</label>
@@ -42,14 +114,15 @@
             </div>
             <div class="mb-3">
                 <label class="form-label">Precio</label>
-                <asp:TextBox runat="server" CssClass="form-control" ID="barraprecio" />
+               <asp:TextBox runat="server" CssClass="form-control" ID="barraprecio" ClientIDMode="Static" type="number" min="1"/>
+                Solo numeros sin coma/punto.               
             </div>
             <div class="mb-3">
                 <label class="form-label">Descripcion</label>
-                <asp:TextBox runat="server" CssClass="form-control"  ID="barradescripcion" />
+                <asp:TextBox runat="server" CssClass="form-control" ID="barradescripcion" />
             </div>
             <br />
-            <asp:Button Text="Agregar producto" runat="server" CssClass="btn btn-primary" Style="position: relative; left: 55px" ID="botonagregarproducto" OnClick="botonagregarproducto_Click" />
+            <asp:Button Text="Agregar producto" runat="server" CssClass="btn btn-primary" Style="position: relative; left: 55px" ID="botonagregarproducto"  OnClientClick="return validacion()" OnClick="botonagregarproducto_Click" />
             <asp:Button Text="Cancelar operacion" runat="server" CssClass="btn btn-primary" Style="position: relative; left: 110px" OnClick="Cancelar_Click" />
             <br />
             <br />

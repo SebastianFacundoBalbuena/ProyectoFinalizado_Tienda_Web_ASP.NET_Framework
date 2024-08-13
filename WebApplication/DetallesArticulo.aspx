@@ -31,6 +31,7 @@
                 <p class="card-text"><small class="text-body-secondary">Categoria : <%:Articulo.Categoria %></small></p>
                 <p class="card-text"><small class="text-body-secondary">Marca : <%:Articulo.Marca %></small></p>
                 <p class="card-text"><small class="text-body-secondary">AR$<%:Articulo.Precio %></small></p>
+                <p class="card-text"><small class="text-body-secondary">Codigo: <%: Articulo.Codigo %></small></p>
                 <asp:Button Text="Volver a la Pag. principal" CssClass="btn btn-primary" runat="server" ID="botonVolverdeDetalles" OnClick="botonVolverdeDetalles_Click" />
             </div>
         </div>

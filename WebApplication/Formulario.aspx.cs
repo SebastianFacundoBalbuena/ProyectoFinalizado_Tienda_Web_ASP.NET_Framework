@@ -15,14 +15,21 @@ namespace WebApplication
         public List<Marca> listaMarca { get; set; }
         public List<Categoria> listaCategoria {  get; set; }
 
+        public List<Articulos> Articulos { get; set; }
+
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
             
             Controler control = new Controler();
 
+          
+                listaCategoria = control.CategoriaLista();
+                listaMarca = control.MarcaListar();
+                Articulos = control.listar();
+            
 
-            listaCategoria = control.CategoriaLista();
-            listaMarca = control.MarcaListar();
 
             
 
@@ -40,6 +47,8 @@ namespace WebApplication
             {
                 Controler control = new Controler();
 
+                
+
                 if(barracodigo.Text != null && barraproducto.Text != null && barraprecio.Text != null)
                 {
                     Categoria categoria = new Categoria();
@@ -52,22 +61,46 @@ namespace WebApplication
                     Articulos newArticulo = new Articulos(categoria, marca);
                     newArticulo.Codigo = barracodigo.Text;
                     newArticulo.Nombre = barraproducto.Text;
-                    newArticulo.Imagen = barraimagen.Text;
+
+                    if(barraimagen.Text == "")
+                    {
+                        newArticulo.Imagen = "https://img.freepik.com/vector-premium/icono-marco-fotos-foto-vacia-blanco-vector-sobre-fondo-transparente-aislado-eps-10_399089-1290.jpg";
+                    }
+                    else
+                    {
+                        newArticulo.Imagen = barraimagen.Text;
+                    }
+                    
                     categoria = listaCategoria.Find(x => x.Categorias == barracategoria.Text);
                     marca = listaMarca.Find(x => x.Marcas == barramarca.Text);
                     newArticulo.Precio = int.Parse(barraprecio.Text);
                     newArticulo.Descripcion = barradescripcion.Text;
 
-                    control.Agregar(newArticulo,categoria,marca);
+
+                    if (Request.QueryString["ID"] != null)
+
+                    {
+                        newArticulo.Id = int.Parse(Request.QueryString["ID"]);
+                        control.Modificar(newArticulo,categoria,marca);
+                    }
+                    else
+                    {
+                        control.Agregar(newArticulo, categoria, marca);
+                    }
+                    
                 }
 
-                Response.Redirect("Productos.aspx");
+                Response.Redirect("Productos.aspx",false);
             }
-            catch (Exception ex)
+            catch (Exception )
             {
 
-                throw ex;
+                //throw ex;
+                Response.Redirect("error.aspx",false);
+
             }
         }
+
+
     }
 }

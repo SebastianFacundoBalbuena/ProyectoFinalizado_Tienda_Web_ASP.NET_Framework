@@ -22,6 +22,7 @@ namespace WebApplication
             {
 
                 Controler control = new Controler();
+
                 Lista = control.listar();
 
                 //Repetidor que funciona como foreach
@@ -46,7 +47,26 @@ namespace WebApplication
             string id = ((Button)sender).CommandArgument;
 
 
-            Response.Redirect("DetallesArticulo.aspx?ID=" + id + "");
+            Response.Redirect("DetallesArticulo.aspx?ID=" + id + "", false);
+        }
+
+        protected void eliminarProducto_Click(object sender, EventArgs e)
+        {
+            string id = ((Button)sender).CommandArgument;
+            Controler control = new Controler();
+
+            control.Eliminar(int.Parse(id));
+            Response.Redirect("Productos.aspx",false);
+
+
+        }
+
+        protected void modificarProducto_Click(object sender, EventArgs e)
+        {
+            string id = ((Button)sender).CommandArgument;
+
+            Response.Redirect("Formulario.aspx?ID=" + id + "");
+            
         }
     }
 }

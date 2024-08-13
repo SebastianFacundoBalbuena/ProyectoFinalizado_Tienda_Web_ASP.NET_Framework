@@ -1,0 +1,6 @@
+C:\Users\Sebastian Balbuena\Desktop\TPFinalNivel2_SebastianBalbuena\TPFinalNivel2_SebastianBalbuena\DataBase\bin\Debug\DataBase.dll
+C:\Users\Sebastian Balbuena\Desktop\TPFinalNivel2_SebastianBalbuena\TPFinalNivel2_SebastianBalbuena\DataBase\bin\Debug\DataBase.pdb
+C:\Users\Sebastian Balbuena\Desktop\TPFinalNivel2_SebastianBalbuena\TPFinalNivel2_SebastianBalbuena\DataBase\obj\Debug\DataBase.csproj.AssemblyReference.cache
+C:\Users\Sebastian Balbuena\Desktop\TPFinalNivel2_SebastianBalbuena\TPFinalNivel2_SebastianBalbuena\DataBase\obj\Debug\DataBase.csproj.CoreCompileInputs.cache
+C:\Users\Sebastian Balbuena\Desktop\TPFinalNivel2_SebastianBalbuena\TPFinalNivel2_SebastianBalbuena\DataBase\obj\Debug\DataBase.dll
+C:\Users\Sebastian Balbuena\Desktop\TPFinalNivel2_SebastianBalbuena\TPFinalNivel2_SebastianBalbuena\DataBase\obj\Debug\DataBase.pdb
