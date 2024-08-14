@@ -35,6 +35,21 @@
 
     %>
 
+    <div id="customAlert" class="custom-alert-content" style="display: none; position: fixed; left: 42%; top: 40%; background-color: rgba(144, 238, 144, 0.5); z-index: 1000; padding: 20px;">
+
+        <div class="alert alert-success" role="alert">
+            ¡Agregado/Modificado exitosamente!
+        </div>
+
+        <div>
+
+           
+            <asp:Button ID="btnAceptar" class="btn btn-success" Style="position: relative; left: 37%"  OnClick="botonagregarproducto_Click" Text="Aceptar" runat="server" />
+        </div>
+
+
+    </div>
+
     <script>
         //Validacion con JavaScript
         function validacion() {
@@ -78,7 +93,12 @@
                 }
 
             }
+
+            document.getElementById('customAlert').style.display = 'block';
+            return false;
         }
+
+        
     </script>
 
     <div class="col" style="position: relative; left: 10%; width: 500px; height: 600px; padding-bottom: 20px">
@@ -124,7 +144,7 @@
         <div style="position: relative; left: 600px; bottom: 495px; width: 500px;">
             <div class="mb-3">
                 <label class="form-label">Precio</label>
-                <asp:TextBox runat="server" CssClass="form-control" ID="barraprecio" ClientIDMode="Static" type="number" min="1" />               
+                <asp:TextBox runat="server" CssClass="form-control" ID="barraprecio" ClientIDMode="Static" type="number" min="1" />
             </div>
             <div class="mb-3">
                 <label class="form-label">Descripcion</label>
