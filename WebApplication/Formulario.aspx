@@ -4,29 +4,33 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-<%string ID = Request.QueryString["ID"];
-    // si hay parametro, se presiono MODIFICAR: Cargara los datos...
-    if(ID != null)
-    {
-
-        foreach (var item in Articulos)
+    <%string ID = Request.QueryString["ID"];
+        // si hay parametro, se presiono MODIFICAR: Cargara los datos...
+        if (ID != null)
         {
-            if(item.Id.ToString() == ID.ToString())
+
+            foreach (var item in Articulos)
             {
-                
-                barracodigo.Text = item.Codigo;
-                barraproducto.Text = item.Nombre;
-                barraimagen.Text = item.Imagen;
-                barracategoria.Text = item.Categoria;
-                barramarca.Text = item.Marca;
-                barraprecio.Text = item.Precio.ToString();
-                barradescripcion.Text = item.Descripcion;
+                if (item.Id.ToString() == ID.ToString())
+                {
+
+                    barracodigo.Text = item.Codigo;
+                    barraproducto.Text = item.Nombre;
+                    if (!IsPostBack)
+                    {
+                        barraimagen.Text = item.Imagen;
+                        panelImagen.Src = item.Imagen;
+                    }
+                    barracategoria.Text = item.Categoria;
+                    barramarca.Text = item.Marca;
+                    barraprecio.Text = item.Precio.ToString();
+                    barradescripcion.Text = item.Descripcion;
 
 
+                }
             }
-        }
 
-    }
+        }
 
 
     %>
@@ -77,56 +81,63 @@
         }
     </script>
 
-    <div class="col" style=" position: relative; left: 30%; width: 500px">
-        <div >
-            <h1 style="position: relative; left: 75px">Agregar Producto</h1>
-            <br />
-            <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Codigo</label>
-                <asp:TextBox runat="server" CssClass="form-control" ID="barracodigo" ClientIDMode="Static" />
-            </div>
-            <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Producto</label>
-                <asp:TextBox runat="server" type="text" CssClass="form-control" ID="barraproducto" ClientIDMode="Static" />
-            </div>
-            <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Imagen(Url)</label>
-                <asp:TextBox runat="server" type="url" CssClass="form-control" ID="barraimagen" ClientIDMode="Static" />
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Categoria</label>
-                <asp:DropDownList ID="barracategoria" runat="server" CssClass="form-select">
-                    <asp:ListItem Text="Celulares" />
-                    <asp:ListItem Text="Televisores" />
-                    <asp:ListItem Text="Media" />
-                    <asp:ListItem Text="Audio" />
-                </asp:DropDownList>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Marca</label>
-                <asp:DropDownList ID="barramarca" runat="server" CssClass="form-select">
-                    <asp:ListItem Text="Samsung" />
-                    <asp:ListItem Text="Apple" />
-                    <asp:ListItem Text="Sony" />
-                    <asp:ListItem Text="Huawei" />
-                    <asp:ListItem Text="Motorola" />
-                </asp:DropDownList>
-            </div>
+    <div class="col" style="position: relative; left: 10%; width: 500px; height: 600px; padding-bottom: 20px">
+
+        <h1 style="position: relative; left: 350px">Agregar Producto</h1>
+        <br />
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Codigo</label>
+            <asp:TextBox runat="server" CssClass="form-control" ID="barracodigo" ClientIDMode="Static" />
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Producto</label>
+            <asp:TextBox runat="server" type="text" CssClass="form-control" ID="barraproducto" ClientIDMode="Static" />
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Imagen(Url)</label>
+            <asp:TextBox runat="server" type="url" CssClass="form-control" ID="barraimagen" ClientIDMode="Static" AutoPostBack="true" OnTextChanged="barraimagen_TextChanged" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Categoria</label>
+            <asp:DropDownList ID="barracategoria" runat="server" CssClass="form-select">
+                <asp:ListItem Text="Celulares" />
+                <asp:ListItem Text="Televisores" />
+                <asp:ListItem Text="Media" />
+                <asp:ListItem Text="Audio" />
+            </asp:DropDownList>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Marca</label>
+            <asp:DropDownList ID="barramarca" runat="server" CssClass="form-select">
+                <asp:ListItem Text="Samsung" />
+                <asp:ListItem Text="Apple" />
+                <asp:ListItem Text="Sony" />
+                <asp:ListItem Text="Huawei" />
+                <asp:ListItem Text="Motorola" />
+            </asp:DropDownList>
+        </div>
+        <br />
+        <asp:Button Text="Agregar producto" runat="server" CssClass="btn btn-primary" Style="position: relative; left: 55px;" ID="botonagregarproducto" OnClientClick="return validacion()" OnClick="botonagregarproducto_Click" />
+        <asp:Button Text="Cancelar operacion" runat="server" CssClass="btn btn-primary" Style="position: relative; left: 110px;" OnClick="Cancelar_Click" />
+
+
+        <div style="position: relative; left: 600px; bottom: 495px; width: 500px;">
             <div class="mb-3">
                 <label class="form-label">Precio</label>
-               <asp:TextBox runat="server" CssClass="form-control" ID="barraprecio" ClientIDMode="Static" type="number" min="1"/>
-                Solo numeros sin coma/punto.               
+                <asp:TextBox runat="server" CssClass="form-control" ID="barraprecio" ClientIDMode="Static" type="number" min="1" />               
             </div>
             <div class="mb-3">
                 <label class="form-label">Descripcion</label>
                 <asp:TextBox runat="server" CssClass="form-control" ID="barradescripcion" />
             </div>
-            <br />
-            <asp:Button Text="Agregar producto" runat="server" CssClass="btn btn-primary" Style="position: relative; left: 55px" ID="botonagregarproducto"  OnClientClick="return validacion()" OnClick="botonagregarproducto_Click" />
-            <asp:Button Text="Cancelar operacion" runat="server" CssClass="btn btn-primary" Style="position: relative; left: 110px" OnClick="Cancelar_Click" />
-            <br />
-            <br />
+
+            <img src="https://img.freepik.com/vector-premium/icono-marco-fotos-foto-vacia-blanco-vector-sobre-fondo-transparente-aislado-eps-10_399089-1290.jpg" runat="server" style="width: 300px; position: relative; left: 100px" id="panelImagen" />
+
+
         </div>
+
     </div>
+
+
 
 </asp:Content>

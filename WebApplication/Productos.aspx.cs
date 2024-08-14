@@ -12,6 +12,8 @@ namespace WebApplication
 {
     public partial class Productos : System.Web.UI.Page
     {
+        //bandera:
+        public string Bandera { get; set; }
         // Propiedad para acceder a la lista de productos
         public List<Articulos> Lista { get; set; }
 
@@ -50,16 +52,6 @@ namespace WebApplication
             Response.Redirect("DetallesArticulo.aspx?ID=" + id + "", false);
         }
 
-        protected void eliminarProducto_Click(object sender, EventArgs e)
-        {
-            string id = ((Button)sender).CommandArgument;
-            Controler control = new Controler();
-
-            control.Eliminar(int.Parse(id));
-            Response.Redirect("Productos.aspx",false);
-
-
-        }
 
         protected void modificarProducto_Click(object sender, EventArgs e)
         {
@@ -68,5 +60,37 @@ namespace WebApplication
             Response.Redirect("Formulario.aspx?ID=" + id + "");
             
         }
+
+
+
+
+
+        protected void btnEliminar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string ID = hiddenFieldId.Value;
+                
+
+
+                Controler control = new Controler();
+
+
+                if(ID != "")
+                control.Eliminar(int.Parse(ID));
+
+                Response.Redirect("Productos.aspx",false);
+
+
+
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
     }
 }

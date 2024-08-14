@@ -60,6 +60,15 @@ namespace WebApplication
         protected global::System.Web.UI.WebControls.DropDownList barramarca;
 
         /// <summary>
+        /// Control botonagregarproducto.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button botonagregarproducto;
+
+        /// <summary>
         /// Control barraprecio.
         /// </summary>
         /// <remarks>
@@ -78,12 +87,12 @@ namespace WebApplication
         protected global::System.Web.UI.WebControls.TextBox barradescripcion;
 
         /// <summary>
-        /// Control botonagregarproducto.
+        /// Control panelImagen.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button botonagregarproducto;
+        protected global::System.Web.UI.HtmlControls.HtmlImage panelImagen;
     }
 }

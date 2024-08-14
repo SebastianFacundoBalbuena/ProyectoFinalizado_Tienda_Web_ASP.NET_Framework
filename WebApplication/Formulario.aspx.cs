@@ -73,7 +73,8 @@ namespace WebApplication
                     
                     categoria = listaCategoria.Find(x => x.Categorias == barracategoria.Text);
                     marca = listaMarca.Find(x => x.Marcas == barramarca.Text);
-                    newArticulo.Precio = int.Parse(barraprecio.Text);
+                    string nuevoPrecio = barraprecio.Text.Replace(".", "").Replace(",", "");
+                    newArticulo.Precio = int.Parse(nuevoPrecio);
                     newArticulo.Descripcion = barradescripcion.Text;
 
 
@@ -101,6 +102,27 @@ namespace WebApplication
             }
         }
 
+        protected void barraimagen_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (barraimagen.Text != "" )
+                {
+                    panelImagen.Src = barraimagen.Text;
 
+                }
+                else
+                {
+                    string imagen = "https://img.freepik.com/vector-premium/icono-marco-fotos-foto-vacia-blanco-vector-sobre-fondo-transparente-aislado-eps-10_399089-1290.jpg";
+                    panelImagen.Src = imagen;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+        }
     }
 }
