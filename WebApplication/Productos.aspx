@@ -4,65 +4,88 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-
-    <h1 style="position: absolute; left: 700px">Productos </h1>
-    <br />
-    <br />
-    <br />
-    <asp:Button Text="Volver" runat="server" CssClass="btn btn-primary" Style="position: absolute; left: 680px" OnClick="Unnamed_Click" />
-    <asp:Button Text="Agregar producto" runat="server" CssClass="btn btn-primary" Style="position: absolute; left: 755px" OnClick="agregar_Click1" />
-
-
-
-
-    <div id="customAlert" class="custom-alert-content" style="display: none; position: fixed; left: 42%; top: 40%; background-color: rgba(241, 148, 138, 0.5); z-index: 1000; padding: 20px;">
-
-        <div class="alert alert-danger" role="alert">
-            Desea eliminar este producto?
-        </div>
-
-        <div>
-
-            <asp:Button ID="btnEliminar" class="btn btn-danger" Style="position: relative; left: 20px; top: 40%;" Text="Eliminar" runat="server" OnClick="btnEliminar_Click" />
-            <asp:Button ID="btnCancelar" class="btn btn-danger" Style="position: relative; left: 44px" OnClientClick="return closeCustomAlert()" Text="Cancelar" runat="server" />
-        </div>
-
-
-    </div>
-
-
-    <asp:HiddenField ID="hiddenFieldId" runat="server" />
-    <script>
-        function showCustomAlert(ID) {
-
-
-            document.getElementById('<%= hiddenFieldId.ClientID %>').value = ID;
-            document.getElementById('customAlert').style.display = 'block';
-            return false;
-
-
-        }
-
-        function closeCustomAlert() {
-            document.getElementById('customAlert').style.display = 'none';
-            return false;
-
-        }
-    </script>
-
-    <br />
-    <br />
-    <br />
-
-
     <asp:ScriptManager runat="server" />
     <asp:UpdatePanel runat="server">
         <ContentTemplate>
+            <%//Contenedor de titulo, busqueda y botones volver e agregar articulo %>
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                <div class="card mb-3" style="max-width: 520px; border: none"></div>
+                <div class="card mb-3" style="width: 590px; position: sticky; right: 500px; max-width: 400px; border: none">
+                    <div class="row g-0">
+                        <div class="col-3"></div>
+
+                        <div class="col-md-8">
+                            <h5 class="card-title" style="font-size: 40px; margin-left: 40px">Productos</h5>
+                            <asp:Button Text=" Buscar 🔃" CssClass="btn btn-primary" runat="server" Style="border: solid 1px; margin-left: 88px; padding: 2px" OnClick="busquedaDeArticulos_TextChanged" />
+                            <asp:TextBox ID="busquedaDeArticulos" runat="server" class="form-control" Style="margin: 5px; width: 16vw;" placeholder="Buscar : Codigo/Producto/Categoria" AutoPostBack="true" OnTextChanged="busquedaDeArticulos_TextChanged" />
+                            <asp:Button Text="Volver" runat="server" CssClass="btn btn-primary" Style="margin: 4px; margin-left: 20px" OnClick="Unnamed_Click" />
+                            <asp:Button Text="Agregar producto" runat="server" CssClass="btn btn-primary" OnClick="agregar_Click1" />
+                        </div>
+
+                    </div>
+                </div>
+                <div class="card mb-3" style="max-width: 540px; border: none"></div>
+
+            </div>
+
+            <br />
+
+            <%//Alerta de confirmacion de eliminado de articulos %>
+            <div id="customAlert" class="custom-alert-content" style="display: none; position: fixed; left: 42%; top: 40%; background-color: rgba(241, 148, 138, 0.5); z-index: 1000; padding: 20px;">
+                <div class="alert alert-danger" role="alert">
+                    Desea eliminar este producto?
+                </div>
+                <div>
+                    <asp:Button ID="btnEliminar" class="btn btn-danger" Style="position: relative; left: 20px; top: 40%;" Text="Eliminar" runat="server" OnClick="btnEliminar_Click" />
+                    <asp:Button ID="btnCancelar" class="btn btn-danger" Style="position: relative; left: 44px" OnClientClick="return closeCustomAlert()" Text="Cancelar" runat="server" />
+                </div>
+            </div>
+
+            <asp:HiddenField ID="hiddenFieldId" runat="server" />
+            <script>
+                function showCustomAlert(ID) {
+
+                    if (ID != null || ID != "") {
+                        document.getElementById('<%= hiddenFieldId.ClientID %>').value = ID;
+                    }
+
+                    document.getElementById('customAlert').style.display = 'block';
+                    return false;
+
+
+                }
+
+                function closeCustomAlert() {
+                    document.getElementById('customAlert').style.display = 'none';
+                    return false;
+
+                }
+            </script>
+
+
+            <%//Mostrar listado de articulos :  %>
+
+
 
 
             <div class="row row-cols-1 row-cols-md-3 g-4">
                 <%
-                    if (Lista != null)
+                    List<Dominio.Articulos> NewLista = new List<Dominio.Articulos>();
+
+
+
+                    if (NuevaLista != null)
+                    {
+
+                        NewLista = NuevaLista;
+                    }
+                    else
+                    {
+                        NewLista = Lista;
+                    }
+
+
+                    if (NewLista != null)
 
                     {%>
 
@@ -99,7 +122,9 @@
 
                     </ItemTemplate>
                 </asp:Repeater>
-                <% } %>
+                <% }
+
+                %>
             </div>
 
 

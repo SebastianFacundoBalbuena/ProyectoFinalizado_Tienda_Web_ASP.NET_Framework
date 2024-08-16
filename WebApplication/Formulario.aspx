@@ -25,29 +25,19 @@
                     barramarca.Text = item.Marca;
                     barraprecio.Text = item.Precio.ToString();
                     barradescripcion.Text = item.Descripcion;
-
-
                 }
             }
-
         }
-
-
     %>
 
+    <%//Alerta de confirmacion de agregado/modificado de articulo %>
     <div id="customAlert" class="custom-alert-content" style="display: none; position: fixed; left: 42%; top: 40%; background-color: rgba(144, 238, 144, 0.5); z-index: 1000; padding: 20px;">
-
         <div class="alert alert-success" role="alert">
             ¡Agregado/Modificado exitosamente!
         </div>
-
         <div>
-
-           
-            <asp:Button ID="btnAceptar" class="btn btn-success" Style="position: relative; left: 37%"  OnClick="botonagregarproducto_Click" Text="Aceptar" runat="server" />
+            <asp:Button ID="btnAceptar" class="btn btn-success" Style="position: relative; left: 37%" OnClick="botonagregarproducto_Click" Text="Aceptar" runat="server" />
         </div>
-
-
     </div>
 
     <script>
@@ -97,10 +87,9 @@
             document.getElementById('customAlert').style.display = 'block';
             return false;
         }
-
-        
     </script>
 
+    <%//Formulario de agregar/modificar productos :  %>
     <div class="col" style="position: relative; left: 10%; width: 500px; height: 600px; padding-bottom: 20px">
 
         <h1 style="position: relative; left: 350px">Agregar Producto</h1>
@@ -140,7 +129,6 @@
         <asp:Button Text="Agregar producto" runat="server" CssClass="btn btn-primary" Style="position: relative; left: 55px;" ID="botonagregarproducto" OnClientClick="return validacion()" OnClick="botonagregarproducto_Click" />
         <asp:Button Text="Cancelar operacion" runat="server" CssClass="btn btn-primary" Style="position: relative; left: 110px;" OnClick="Cancelar_Click" />
 
-
         <div style="position: relative; left: 600px; bottom: 495px; width: 500px;">
             <div class="mb-3">
                 <label class="form-label">Precio</label>
@@ -150,14 +138,8 @@
                 <label class="form-label">Descripcion</label>
                 <asp:TextBox runat="server" CssClass="form-control" ID="barradescripcion" />
             </div>
-
             <img src="https://img.freepik.com/vector-premium/icono-marco-fotos-foto-vacia-blanco-vector-sobre-fondo-transparente-aislado-eps-10_399089-1290.jpg" runat="server" style="width: 300px; position: relative; left: 100px" id="panelImagen" />
-
-
         </div>
-
     </div>
-
-
 
 </asp:Content>

@@ -16,6 +16,7 @@ namespace WebApplication
         public string Bandera { get; set; }
         // Propiedad para acceder a la lista de productos
         public List<Articulos> Lista { get; set; }
+        public List<Articulos> NuevaLista { get; set; }
 
         // Página Load
         protected void Page_Load(object sender, EventArgs e)
@@ -92,5 +93,26 @@ namespace WebApplication
             }
         }
 
+        protected void busquedaDeArticulos_TextChanged(object sender, EventArgs e)
+        {
+            Controler control = new Controler();
+
+            try
+            {
+
+                   NuevaLista = control.listar().FindAll(x => x.Nombre.ToUpper().Contains(busquedaDeArticulos.Text.ToUpper()) || x.Codigo.ToUpper().Contains(busquedaDeArticulos.Text.ToUpper()) || x.Categoria.ToUpper().Contains(busquedaDeArticulos.Text.ToUpper()) || x.Marca.ToUpper().Contains(busquedaDeArticulos.Text.ToUpper()));
+                   repetidor.DataSource = NuevaLista;
+                   repetidor.DataBind();
+
+                
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+           
+        }
     }
 }
