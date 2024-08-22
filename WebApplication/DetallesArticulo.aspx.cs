@@ -15,12 +15,20 @@ namespace WebApplication
         public List<Articulos> Lista { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
+            try
+            {
+                Controler control = new Controler();
+                Lista = control.listar();
+            }
+            catch (Exception)
+            {
 
-            Controler control = new Controler();
-            Lista = control.listar();
+                Response.Redirect("Error.aspx", false);
+            }
 
 
-            
+
+
         }
 
         protected void botonVolverdeDetalles_Click(object sender, EventArgs e)

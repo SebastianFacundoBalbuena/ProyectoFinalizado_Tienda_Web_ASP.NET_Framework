@@ -9,7 +9,9 @@
             <h5 class="card-title">Hubo un error en el formato</h5>
             <p class="card-text">Hubo un error en la escritura del formato ingresado, compruebe bien los datos a ingresar antes de aceptar por favor... </p>
             <p class="card-text"><small class="text-body-secondary">Volver al formulario</small></p>
-            <asp:Button Text="Volver al formulario" runat="server" ID="volverAlFormulario" OnClick="volverAlFormulario_Click"  CssClass="btn btn-primary" />
+            <asp:Button Text="Volver al formulario" runat="server" ID="volverAlFormulario" OnClick="volverAlFormulario_Click"  CssClass="btn btn-primary" style="margin:2px" />
+            <br />
+            <asp:Button Text="Volver al inicio" runat="server" ID="volverInicio"  OnClick="volverInicio_Click"  CssClass="btn btn-primary" style="margin:2px"/>
         </div>
     </div>
 </asp:Content>

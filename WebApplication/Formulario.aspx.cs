@@ -13,7 +13,7 @@ namespace WebApplication
     public partial class Formulario : System.Web.UI.Page
     {
         public List<Marca> listaMarca { get; set; }
-        public List<Categoria> listaCategoria {  get; set; }
+        public List<Categoria> listaCategoria { get; set; }
 
         public List<Articulos> Articulos { get; set; }
 
@@ -21,24 +21,31 @@ namespace WebApplication
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
-            Controler control = new Controler();
+            try
+            {
+                Controler control = new Controler();
 
-          
                 listaCategoria = control.CategoriaLista();
                 listaMarca = control.MarcaListar();
                 Articulos = control.listar();
-            
+            }
+            catch (Exception)
+            {
+
+                Response.Redirect("Error.aspx", false);
+            }
 
 
-            
 
-           
+
+
+
+
         }
 
         protected void Cancelar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Productos.aspx",false);
+            Response.Redirect("Productos.aspx", false);
         }
 
         protected void botonagregarproducto_Click(object sender, EventArgs e)
@@ -47,22 +54,22 @@ namespace WebApplication
             {
                 Controler control = new Controler();
 
-                
 
-                if(barracodigo.Text != null && barraproducto.Text != null && barraprecio.Text != null)
+
+                if (barracodigo.Text != null && barraproducto.Text != null && barraprecio.Text != null)
                 {
                     Categoria categoria = new Categoria();
                     Marca marca = new Marca();
-                    
 
-                    
+
+
 
 
                     Articulos newArticulo = new Articulos(categoria, marca);
                     newArticulo.Codigo = barracodigo.Text;
                     newArticulo.Nombre = barraproducto.Text;
 
-                    if(barraimagen.Text == "")
+                    if (barraimagen.Text == "")
                     {
                         newArticulo.Imagen = "https://img.freepik.com/vector-premium/icono-marco-fotos-foto-vacia-blanco-vector-sobre-fondo-transparente-aislado-eps-10_399089-1290.jpg";
                     }
@@ -70,7 +77,7 @@ namespace WebApplication
                     {
                         newArticulo.Imagen = barraimagen.Text;
                     }
-                    
+
                     categoria = listaCategoria.Find(x => x.Categorias == barracategoria.Text);
                     marca = listaMarca.Find(x => x.Marcas == barramarca.Text);
                     string nuevoPrecio = barraprecio.Text.Replace(".", "").Replace(",", "");
@@ -82,22 +89,22 @@ namespace WebApplication
 
                     {
                         newArticulo.Id = int.Parse(Request.QueryString["ID"]);
-                        control.Modificar(newArticulo,categoria,marca);
+                        control.Modificar(newArticulo, categoria, marca);
                     }
                     else
                     {
                         control.Agregar(newArticulo, categoria, marca);
                     }
-                    
+
                 }
 
-                Response.Redirect("Productos.aspx",false);
+                Response.Redirect("Productos.aspx", false);
             }
-            catch (Exception )
+            catch (Exception)
             {
 
-                //throw ex;
-                Response.Redirect("error.aspx",false);
+
+                Response.Redirect("error.aspx", false);
 
             }
         }
@@ -106,7 +113,7 @@ namespace WebApplication
         {
             try
             {
-                if (barraimagen.Text != "" )
+                if (barraimagen.Text != "")
                 {
                     panelImagen.Src = barraimagen.Text;
 
@@ -117,10 +124,10 @@ namespace WebApplication
                     panelImagen.Src = imagen;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
-                throw ex;
+                Response.Redirect("Error.aspx", false);
             }
 
         }

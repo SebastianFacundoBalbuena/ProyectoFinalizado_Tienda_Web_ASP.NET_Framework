@@ -21,18 +21,27 @@ namespace WebApplication
         // Página Load
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            try
+            {
+                if (!IsPostBack)
+                {
+
+                    Controler control = new Controler();
+
+                    Lista = control.listar();
+
+                    //Repetidor que funciona como foreach
+                    // ventaja, se puede pasar argumentos al back
+                    repetidor.DataSource = control.listar();
+                    repetidor.DataBind();
+                }
+            }
+            catch (Exception)
             {
 
-                Controler control = new Controler();
-
-                Lista = control.listar();
-
-                //Repetidor que funciona como foreach
-                // ventaja, se puede pasar argumentos al back
-                repetidor.DataSource = control.listar();
-                repetidor.DataBind();
+                Response.Redirect("Error.aspx", false);
             }
+
         }
 
         protected void Unnamed_Click(object sender, EventArgs e)
@@ -47,19 +56,35 @@ namespace WebApplication
 
         protected void verDetalles_Click(object sender, EventArgs e)
         {
-            string id = ((Button)sender).CommandArgument;
+            try
+            {
+                string id = ((Button)sender).CommandArgument;
+                Response.Redirect("DetallesArticulo.aspx?ID=" + id + "", false);
+            }
+            catch (Exception)
+            {
 
+                Response.Redirect("Error.aspx", false);
+            }
 
-            Response.Redirect("DetallesArticulo.aspx?ID=" + id + "", false);
         }
 
 
         protected void modificarProducto_Click(object sender, EventArgs e)
         {
-            string id = ((Button)sender).CommandArgument;
+            try
+            {
+                string id = ((Button)sender).CommandArgument;
+                Response.Redirect("Formulario.aspx?ID="+id+"");
+            }
+            catch (Exception ex)
+            {
 
-            Response.Redirect("Formulario.aspx?ID=" + id + "");
-            
+               
+                throw ex;
+            }
+
+
         }
 
 
@@ -71,25 +96,25 @@ namespace WebApplication
             try
             {
                 string ID = hiddenFieldId.Value;
-                
+
 
 
                 Controler control = new Controler();
 
 
-                if(ID != "")
-                control.Eliminar(int.Parse(ID));
+                if (ID != "")
+                    control.Eliminar(int.Parse(ID));
 
-                Response.Redirect("Productos.aspx",false);
+                Response.Redirect("Productos.aspx", false);
 
 
 
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
-                throw ex;
+                Response.Redirect("Error.aspx", false);
             }
         }
 
@@ -100,19 +125,19 @@ namespace WebApplication
             try
             {
 
-                   NuevaLista = control.listar().FindAll(x => x.Nombre.ToUpper().Contains(busquedaDeArticulos.Text.ToUpper()) || x.Codigo.ToUpper().Contains(busquedaDeArticulos.Text.ToUpper()) || x.Categoria.ToUpper().Contains(busquedaDeArticulos.Text.ToUpper()) || x.Marca.ToUpper().Contains(busquedaDeArticulos.Text.ToUpper()));
-                   repetidor.DataSource = NuevaLista;
-                   repetidor.DataBind();
+                NuevaLista = control.listar().FindAll(x => x.Nombre.ToUpper().Contains(busquedaDeArticulos.Text.ToUpper()) || x.Codigo.ToUpper().Contains(busquedaDeArticulos.Text.ToUpper()) || x.Categoria.ToUpper().Contains(busquedaDeArticulos.Text.ToUpper()) || x.Marca.ToUpper().Contains(busquedaDeArticulos.Text.ToUpper()));
+                repetidor.DataSource = NuevaLista;
+                repetidor.DataBind();
 
-                
+
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
-                throw ex;
+                Response.Redirect("Error.aspx", false);
             }
-           
+
         }
     }
 }

@@ -8,26 +8,21 @@
     <asp:UpdatePanel runat="server">
         <ContentTemplate>
             <%//Contenedor de titulo, busqueda y botones volver e agregar articulo %>
-            <div class="row row-cols-1 row-cols-md-3 g-4">
-                <div class="card mb-3" style="max-width: 520px; border: none"></div>
-                <div class="card mb-3" style="width: 590px; position: sticky; right: 500px; max-width: 400px; border: none">
-                    <div class="row g-0">
-                        <div class="col-3"></div>
 
-                        <div class="col-md-8">
-                            <h5 class="card-title" style="font-size: 40px; margin-left: 40px">Productos</h5>
-                            <asp:Button Text=" Buscar 🔃" CssClass="btn btn-primary" runat="server" Style="border: solid 1px; margin-left: 88px; padding: 2px" OnClick="busquedaDeArticulos_TextChanged" />
-                            <asp:TextBox ID="busquedaDeArticulos" runat="server" class="form-control" Style="margin: 5px; width: 16vw;" placeholder="Buscar : Codigo/Producto/Categoria" AutoPostBack="true" OnTextChanged="busquedaDeArticulos_TextChanged" />
-                            <asp:Button Text="Volver" runat="server" CssClass="btn btn-primary" Style="margin: 4px; margin-left: 20px" OnClick="Unnamed_Click" />
-                            <asp:Button Text="Agregar producto" runat="server" CssClass="btn btn-primary" OnClick="agregar_Click1" />
-                        </div>
+            <div style="border:none; display:flex; align-items: center; justify-content: center">
 
-                    </div>
+                <div class="col-md-8" style="border: none; width: 300px">
+                    <h5 class="card-title" style="font-size: 40px; margin-left: 40px">Productos</h5>
+                    <asp:Button Text=" Buscar/Refrescar" CssClass="btn btn-primary" runat="server" Style=" width:150px ;border: solid 1px; margin-left: 60px; padding: 2px" OnClick="busquedaDeArticulos_TextChanged" />
+                    <asp:TextBox ID="busquedaDeArticulos" runat="server" class="form-control" Style="margin: 5px; width: 16vw;" placeholder="Buscar : Codigo/Producto/Categoria" AutoPostBack="true" OnTextChanged="busquedaDeArticulos_TextChanged" />
+                    <asp:Button Text="Volver" runat="server" CssClass="btn btn-primary" Style="margin: 4px; margin-left: 20px" OnClick="Unnamed_Click" />
+                    <asp:Button Text="Agregar producto" runat="server" CssClass="btn btn-primary" OnClick="agregar_Click1" />
+
                 </div>
-                <div class="card mb-3" style="max-width: 540px; border: none"></div>
 
             </div>
 
+          
             <br />
 
             <%//Alerta de confirmacion de eliminado de articulos %>

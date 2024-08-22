@@ -18,5 +18,10 @@ namespace WebApplication
         {
             Response.Redirect("Formulario.aspx");
         }
+
+        protected void volverInicio_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Default.aspx", false);
+        }
     }
 }
