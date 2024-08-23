@@ -24,5 +24,10 @@ namespace WebApplication
         {
             Response.Redirect("Registros.aspx", false);
         }
+
+        protected void botonReportes_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Reportes.aspx", false);
+        }
     }
 }
