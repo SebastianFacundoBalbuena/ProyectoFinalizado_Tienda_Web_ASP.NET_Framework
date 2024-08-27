@@ -297,5 +297,60 @@ namespace Controllers
         }
 
        
+        public List<CarroDeCompras> Carrito()
+        {
+            Data data = new Data();
+            try
+            {
+                
+                List<CarroDeCompras> listaCarroCompras = new List<CarroDeCompras>();
+
+                data.setearConsulta("SELECT * FROM CarroDeCompras");
+                data.ejecutarConsulta();
+
+                while (data.LectorReader.Read())
+                {
+                    CarroDeCompras newCarro = new CarroDeCompras();
+
+                    newCarro.ProductoComprar = (string)data.LectorReader["ProductoAComprar"];
+                    newCarro.PrecioFinal = (decimal)data.LectorReader["PrecioFinal"];
+
+                    listaCarroCompras.Add(newCarro);
+                }
+
+                return listaCarroCompras;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                data.cerrarConexion();
+            }
+        }
+
+        public void AgregarCarro(CarroDeCompras carrito)
+        {
+            Data data = new Data();
+
+            try
+            {
+                    data.setearConsulta("insert CarroDeCompras(ProductoAComprar,PrecioFinal)values('"+carrito.ProductoComprar+"',"+carrito.PrecioFinal+")");
+                    data.EjecutarAccion();
+                
+                
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                data.cerrarConexion();
+            }
+        }
     }
 }

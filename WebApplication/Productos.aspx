@@ -9,20 +9,18 @@
         <ContentTemplate>
             <%//Contenedor de titulo, busqueda y botones volver e agregar articulo %>
 
-            <div style="border:none; display:flex; align-items: center; justify-content: center">
-
-                <div class="col-md-8" style="border: none; width: 300px">
-                    <h5 class="card-title" style="font-size: 40px; margin-left: 40px">Productos</h5>
-                    <asp:Button Text=" Buscar/Refrescar" CssClass="btn btn-primary" runat="server" Style=" width:150px ;border: solid 1px; margin-left: 60px; padding: 2px" OnClick="busquedaDeArticulos_TextChanged" />
-                    <asp:TextBox ID="busquedaDeArticulos" runat="server" class="form-control" Style="margin: 5px; width: 16vw;" placeholder="Buscar : Codigo/Producto/Categoria" AutoPostBack="true" OnTextChanged="busquedaDeArticulos_TextChanged" />
-                    <asp:Button Text="Volver" runat="server" CssClass="btn btn-primary" Style="margin: 4px; margin-left: 20px" OnClick="Unnamed_Click" />
-                    <asp:Button Text="Agregar producto" runat="server" CssClass="btn btn-primary" OnClick="agregar_Click1" />
-
+            <div class="card text-center" style="justify-content: center; display: flex; align-items: center; overflow:hidden">
+                <div class="card-header">
                 </div>
-
+                <div class="card-body" style="width: 600px">
+                    <h5 class="card-title">Lista de productos : </h5>
+                    <asp:Button Text="Buscar/Refrescar" CssClass="btn btn-primary" runat="server" OnClick="busquedaDeArticulos_TextChanged"/>
+                    <asp:TextBox ID="busquedaDeArticulos" CssClass="form-control" Style="margin: 6px; padding-left: 110px" runat="server" placeholder="Buscar por : Codigo/Produco/Marca/Categoria" AutoPostBack="true" OnTextChanged="busquedaDeArticulos_TextChanged" />
+                    <asp:Button Text="Agregar producto" runat="server" CssClass="btn btn-primary" OnClick="agregar_Click1" />
+                    <asp:Button Text="Volver al inicio" CssClass="btn btn-primary" runat="server" OnClick="Unnamed_Click"/>
+                </div>
             </div>
 
-          
             <br />
 
             <%//Alerta de confirmacion de eliminado de articulos %>
@@ -100,7 +98,7 @@
                                         <h5 class="card-title"><%#Eval("Nombre") %></h5>
                                         <p class="card-text">Marca: <%#Eval("Marca") %></p>
                                         <p class="card-text">Descripcion: <%#Eval("Descripcion") %></p>
-                                        <p class="card-text"><small class="text-body-secondary">AR$: <%#Eval("Precio") %></small></p>
+                                        <p class="card-text"><small class="text-body-secondary">AR$<%#Eval("Precio") %></small></p>
                                         <asp:Button Text="Modificar" runat="server" CssClass="btn btn-info" ID="modificarProducto" CommandArgument='<%#Eval("Id")%>' OnClick="modificarProducto_Click" />
                                         <asp:Button Text="Eliminar" runat="server" CssClass="btn btn-danger" ID="eliminarProducto" CommandArgument='<%#Eval("Id")%>' OnClientClick='<%# "return showCustomAlert(\"" + Eval("Id") + "\");" %>' />
                                         <br />

@@ -14,6 +14,9 @@ namespace WebApplication
     public partial class Registros : System.Web.UI.Page
     {
         public List<Articulos> lista = new List<Articulos>();
+
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -21,16 +24,13 @@ namespace WebApplication
             {
                 Controler control = new Controler();
                 lista = control.listar();
-
-                panelderegistro.DataSource = control.Registro();
-                panelderegistro.DataBind();
-                
-                
-
-
+        
 
                 if (!IsPostBack)
                 {
+                    panelderegistro.DataSource = control.Registro();
+                    panelderegistro.DataBind();
+
                     List<string> nombres = new List<string>();
                     foreach (Dominio.Articulos item in lista)
                     {
@@ -183,27 +183,32 @@ namespace WebApplication
 
                 if (barraFecha.Text == "")
                 {
+                    
                     panelderegistro.DataSource = control.Registro();
                     panelderegistro.DataBind();
                 }
                 else if (tipoDeFecha.Text == "Mes")
                 {
                     ListaDeArt = control.Registro().FindAll(x => x.Fecha.Contains("-" + barraFecha.Text + "-"));
+                  
                     panelderegistro.DataSource = ListaDeArt;
                     panelderegistro.DataBind();
                 }
                 else if (tipoDeFecha.Text == "Año")
                 {
                     ListaDeArt = control.Registro().FindAll(x => x.Fecha.Contains("-" + barraFecha.Text + ""));
+                    
                     panelderegistro.DataSource = ListaDeArt;
                     panelderegistro.DataBind();
                 }
                 else if (tipoDeFecha.Text == "Dia-Mes-Año")
                 {
                     ListaDeArt = control.Registro().FindAll(x => x.Fecha.Contains("" + barraFecha.Text + ""));
+                   
                     panelderegistro.DataSource = ListaDeArt;
                     panelderegistro.DataBind();
                 }
+
 
             }
             catch (Exception)
@@ -222,17 +227,24 @@ namespace WebApplication
         {
             try
             {
+               
+
                 int indice = int.Parse(e.CommandArgument.ToString());
+                
 
                 Controler control = new Controler();
 
-                List<RegistroDeVentas> NewRegistros = new List<RegistroDeVentas>();
-                NewRegistros = control.Registro();
-
-
-
+                
                 RegistroDeVentas eliminarRegistro = new RegistroDeVentas();
-                eliminarRegistro = NewRegistros[indice];
+
+                if(e.CommandName == "Eliminar")
+                {
+                    int id = int.Parse(e.CommandArgument.ToString());
+
+                    eliminarRegistro = control.Registro().Find(x => x.ID == id);
+                }
+
+                
 
                 control.EliminarRegistro(eliminarRegistro.ID);
                 panelderegistro.DataSource = control.Registro();

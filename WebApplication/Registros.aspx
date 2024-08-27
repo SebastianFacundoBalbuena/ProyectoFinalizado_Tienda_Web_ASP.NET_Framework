@@ -80,7 +80,13 @@
                             <asp:BoundField HeaderText="Cantidad" DataField="Cantidad" />
                             <asp:BoundField HeaderText="Fecha" DataField="Fecha" />
                             <asp:BoundField HeaderText="Precio" DataField="Precio" />
-                            <asp:CommandField ControlStyle-CssClass="btn btn-danger" HeaderText="Eliminar" ShowSelectButton="true" SelectText="Eliminar" />
+
+
+                            <asp:TemplateField HeaderText="Eliminar">
+                                <ItemTemplate>
+                                    <asp:Button ID="botonEliminar" runat="server" CommandName="Eliminar" CommandArgument='<%# Eval("ID") %>' Text="Eliminar" CssClass="btn btn-danger" />
+                                </ItemTemplate>
+                            </asp:TemplateField>
 
                         </Columns>
                     </asp:GridView>

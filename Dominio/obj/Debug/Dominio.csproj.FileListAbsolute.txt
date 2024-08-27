@@ -4,3 +4,9 @@ C:\Users\Sebastian Balbuena\Desktop\TPFinalNivel2_SebastianBalbuena\TPFinalNivel
 C:\Users\Sebastian Balbuena\Desktop\TPFinalNivel2_SebastianBalbuena\TPFinalNivel2_SebastianBalbuena\Dominio\obj\Debug\Dominio.csproj.CoreCompileInputs.cache
 C:\Users\Sebastian Balbuena\Desktop\TPFinalNivel2_SebastianBalbuena\TPFinalNivel2_SebastianBalbuena\Dominio\obj\Debug\Dominio.dll
 C:\Users\Sebastian Balbuena\Desktop\TPFinalNivel2_SebastianBalbuena\TPFinalNivel2_SebastianBalbuena\Dominio\obj\Debug\Dominio.pdb
+C:\Users\Sebastian Balbuena\Desktop\Primer pagina web en ASP.NET\WebApplication\Dominio\bin\Debug\Dominio.dll
+C:\Users\Sebastian Balbuena\Desktop\Primer pagina web en ASP.NET\WebApplication\Dominio\bin\Debug\Dominio.pdb
+C:\Users\Sebastian Balbuena\Desktop\Primer pagina web en ASP.NET\WebApplication\Dominio\obj\Debug\Dominio.csproj.AssemblyReference.cache
+C:\Users\Sebastian Balbuena\Desktop\Primer pagina web en ASP.NET\WebApplication\Dominio\obj\Debug\Dominio.csproj.CoreCompileInputs.cache
+C:\Users\Sebastian Balbuena\Desktop\Primer pagina web en ASP.NET\WebApplication\Dominio\obj\Debug\Dominio.dll
+C:\Users\Sebastian Balbuena\Desktop\Primer pagina web en ASP.NET\WebApplication\Dominio\obj\Debug\Dominio.pdb
