@@ -22,6 +22,14 @@ namespace WebApplication
                     repetidor.DataSource = control.listar();
                     repetidor.DataBind();
                 }
+
+                if (Session["ListaVieja"] != null)
+                {
+                    List<Articulos> listaCarritoSessions = Session["ListaVieja"] as List<Articulos>;
+                    int contador = 0;
+                    contador = listaCarritoSessions.Count;
+                    labelCantidad.Text = contador.ToString();
+                }
             }
             catch (Exception)
             {
@@ -88,14 +96,21 @@ namespace WebApplication
                 string ID = ((Button)sender).CommandArgument;
                 Articulos art;
                 art = control.listar().Find(x => x.Id == int.Parse(ID));
-                CarroDeCompras carro = new CarroDeCompras();
+                
 
-                carro.ProductoComprar = art.Nombre;
-                carro.PrecioFinal = art.Precio;
+                
+                List<Articulos> listaVieja = new List<Articulos>();
+                if (Session["ListaVieja"] != null)
+                {
+                    listaVieja = Session["ListaVieja"] as List<Articulos>;
+                }
+                
+                listaVieja.Add(art);
 
-                control.AgregarCarro(carro);
+                Session["ListaVieja"] = listaVieja;
 
-                contador = control.Carrito().Count;
+                List<Articulos> listaCarritoSessions = Session["ListaVieja"] as List<Articulos>;
+                contador = listaCarritoSessions.Count;
                 labelCantidad.Text = contador.ToString();
 
             }
@@ -105,5 +120,6 @@ namespace WebApplication
                 throw ex;
             }
         }
+
     }
 }
