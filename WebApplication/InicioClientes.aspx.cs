@@ -16,7 +16,12 @@ namespace WebApplication
 
         protected void IrAProductos_Click(object sender, EventArgs e)
         {
-            Response.Redirect("ProductosCliente.aspx", false);
+            Response.Redirect("Login.aspx", false);
+        }
+
+        protected void botonRegistarse_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Registrarse.aspx",false);
         }
     }
 }

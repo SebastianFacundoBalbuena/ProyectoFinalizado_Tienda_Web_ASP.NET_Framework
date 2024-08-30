@@ -11,25 +11,25 @@ namespace WebApplication
 {
 
 
-    public partial class InicioClientes
+    public partial class Login
     {
 
         /// <summary>
-        /// Control IrAProductos.
+        /// Control botonRegistrarse.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button IrAProductos;
+        protected global::System.Web.UI.WebControls.Button botonRegistrarse;
 
         /// <summary>
-        /// Control botonRegistarse.
+        /// Control botonCancelar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button botonRegistarse;
+        protected global::System.Web.UI.WebControls.Button botonCancelar;
     }
 }

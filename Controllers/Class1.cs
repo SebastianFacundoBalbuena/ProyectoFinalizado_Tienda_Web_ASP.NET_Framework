@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Dominio;
 using DataBase;
+using System.Runtime.Remoting.Messaging;
 
 namespace Controllers
 {
@@ -297,33 +298,19 @@ namespace Controllers
         }
 
        
-        public List<CarroDeCompras> Carrito()
+        public void AgregarUsuario(Usuarios usuario)
         {
             Data data = new Data();
+
             try
             {
-                
-                List<CarroDeCompras> listaCarroCompras = new List<CarroDeCompras>();
-
-                data.setearConsulta("SELECT * FROM CarroDeCompras");
-                data.ejecutarConsulta();
-
-                while (data.LectorReader.Read())
-                {
-                    CarroDeCompras newCarro = new CarroDeCompras();
-
-                    newCarro.ProductoComprar = (string)data.LectorReader["ProductoAComprar"];
-                    newCarro.PrecioFinal = (decimal)data.LectorReader["PrecioFinal"];
-
-                    listaCarroCompras.Add(newCarro);
-                }
-
-                return listaCarroCompras;
+                data.setearConsulta("insert Usuarios (Email, Contraseña,TipoDeUsuario,Nombre,Apellido)Values('" + usuario.Email + "','" + usuario.Contraseña + "'," + usuario.TipoDeUsuario + ",'" + usuario.Nombre + "','" + usuario.Apellido + "')");
+                data.EjecutarAccion();
             }
             catch (Exception ex)
             {
-
                 throw ex;
+               
             }
             finally
             {
@@ -331,26 +318,5 @@ namespace Controllers
             }
         }
 
-        public void AgregarCarro(CarroDeCompras carrito)
-        {
-            Data data = new Data();
-
-            try
-            {
-                    data.setearConsulta("insert CarroDeCompras(ProductoAComprar,PrecioFinal)values('"+carrito.ProductoComprar+"',"+carrito.PrecioFinal+")");
-                    data.EjecutarAccion();
-                
-                
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-            finally
-            {
-                data.cerrarConexion();
-            }
-        }
     }
 }

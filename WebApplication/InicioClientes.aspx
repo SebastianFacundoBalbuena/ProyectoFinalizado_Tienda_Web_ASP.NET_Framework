@@ -33,12 +33,13 @@
 
     <div class="card text-center">
         <div class="card-header">
-            No te lo pierdas !!
+            ¡Inicia sesión para acceder a la lista de Stock!
         </div>
         <div class="card-body">
             <h5 class="card-title">New Origins</h5>
-            <p class="card-text">¡Conoce ya mismo la lista de productos disponible en nuestra tienda!. </p>
+            <p class="card-text">¡Conoce ya mismo los productos disponible en nuestra tienda!. </p>
             <asp:Button CssClass="btn btn-primary" Text="Productos disponibles" runat="server" ID="IrAProductos" OnClick="IrAProductos_Click" />
+            <asp:Button CssClass="btn btn-primary" Text="Registrarse" runat="server" ID="botonRegistarse" OnClick="botonRegistarse_Click" />
         </div>
         <div class="card-footer text-body-secondary">
             Provincia de Bs As.

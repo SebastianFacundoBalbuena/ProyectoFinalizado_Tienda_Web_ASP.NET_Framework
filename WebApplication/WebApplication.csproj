@@ -76,8 +76,10 @@
     <Content Include="Formulario.aspx" />
     <Content Include="Global.asax" />
     <Content Include="InicioClientes.aspx" />
+    <Content Include="Login.aspx" />
     <Content Include="Productos.aspx" />
     <Content Include="ProductosCliente.aspx" />
+    <Content Include="Registrarse.aspx" />
     <Content Include="Registros.aspx" />
     <Content Include="Reportes.aspx" />
     <Content Include="Web.config" />
@@ -135,6 +137,13 @@
     <Compile Include="InicioClientes.aspx.designer.cs">
       <DependentUpon>InicioClientes.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MasterPage.Master.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -157,6 +166,13 @@
       <DependentUpon>ProductosCliente.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Registrarse.aspx.cs">
+      <DependentUpon>Registrarse.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Registrarse.aspx.designer.cs">
+      <DependentUpon>Registrarse.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Registros.aspx.cs">
       <DependentUpon>Registros.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
