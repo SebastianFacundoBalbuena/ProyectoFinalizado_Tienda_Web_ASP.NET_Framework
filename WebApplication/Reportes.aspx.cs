@@ -21,6 +21,23 @@ namespace WebApplication
         {
             try
             {
+
+                if (Session["UsuarioActivo"] == null)
+                {
+                    Response.Redirect("Login.aspx", false);
+                }
+                else
+                {
+                    Usuarios usuario = new Usuarios();
+                    usuario = (Usuarios)Session["UsuarioActivo"];
+
+                    if (usuario.TipoDeUsuario == 0)
+                    {
+                        Response.Redirect("InicioClientes.aspx", false);
+                    }
+                }
+
+
                 Controler control = new Controler();
 
                 registros = control.Registro();

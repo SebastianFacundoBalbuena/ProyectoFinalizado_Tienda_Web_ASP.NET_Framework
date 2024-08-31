@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Controllers;
+using Dominio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -22,6 +24,43 @@ namespace WebApplication
         protected void botonCancelar_Click(object sender, EventArgs e)
         {
             Response.Redirect("InicioClientes.aspx", false);
+        }
+
+        protected void BtnIniciarSesion_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                Controler control = new Controler();
+                Usuarios NewUsuario = new Usuarios();
+                Usuarios Activo = new Usuarios();
+
+                NewUsuario.Email = barraEmail.Text;
+                NewUsuario.Contraseña = barraContraseña.Text;
+
+                Activo = control.ValidarUsuario(NewUsuario);
+
+                if(Activo.Id != 0)
+                {
+                    Session.Add("UsuarioActivo", Activo);
+                    Response.Redirect("ProductosCliente.aspx", false);
+
+                }
+                else
+                {
+                    Response.Redirect("Login.aspx", false);
+                }
+                
+
+                
+
+               
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
     }
 }

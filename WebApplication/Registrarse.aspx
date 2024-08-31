@@ -13,20 +13,21 @@
 
             <br />
             <br />
-            <asp:Label  Text="Nombre" runat="server" />
-            <asp:TextBox ID="barraNombre" style="margin:4px" CssClass="form-control" runat="server"></asp:TextBox>
+            <asp:Label Text="Nombre" runat="server" />
+            <asp:TextBox ID="barraNombre" Style="margin: 4px" CssClass="form-control" runat="server"></asp:TextBox>
 
-            <asp:Label  Text="Apellido" runat="server" />
-            <asp:TextBox ID="barraApellido" style="margin:4px" CssClass="form-control" runat="server"></asp:TextBox>
+            <asp:Label Text="Apellido" runat="server" />
+            <asp:TextBox ID="barraApellido" Style="margin: 4px" CssClass="form-control" runat="server"></asp:TextBox>
+
 
             <asp:Label Text="Email" runat="server" />
-            <asp:TextBox ID="barraEmail" Type="Email" style="margin:4px" CssClass="form-control" runat="server"></asp:TextBox>
+            <asp:TextBox ID="barraEmail" Type="Email" Style="margin: 4px" CssClass="form-control" runat="server"></asp:TextBox>
 
             <asp:Label Text="Contraseña" runat="server" />
-            <asp:TextBox ID="barraContraseña" Type="Password" style="margin:4px" CssClass="form-control" runat="server"></asp:TextBox>
+            <asp:TextBox ID="barraContraseña" Type="Password" Style="margin: 4px" CssClass="form-control" runat="server"></asp:TextBox>
             <br />
-            <asp:Button ID="botonRegistrarse" style="margin:2px" CssClass="btn btn-primary" Text="Registrarse" runat="server" OnClick="botonRegistrarse_Click"/>
-            <asp:Button ID="botonCancelar" style="margin:2px" CssClass="btn btn-danger" Text="Cancelar" runat="server" OnClick="botonCancelar_Click" />
+            <asp:Button ID="botonRegistrarse" Style="margin: 2px" CssClass="btn btn-primary" Text="Registrarse" runat="server" OnClick="botonRegistrarse_Click" />
+            <asp:Button ID="botonCancelar" Style="margin: 2px" CssClass="btn btn-danger" Text="Cancelar" runat="server" OnClick="botonCancelar_Click" />
 
 
 

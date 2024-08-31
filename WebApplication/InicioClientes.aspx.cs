@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Dominio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,7 +17,17 @@ namespace WebApplication
 
         protected void IrAProductos_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Login.aspx", false);
+
+            if (Session["UsuarioActivo"] != null)
+            {
+                Response.Redirect("ProductosCliente.aspx", false);
+            }
+            else
+            {
+                Response.Redirect("Login.aspx", false);
+            }
+
+            
         }
 
         protected void botonRegistarse_Click(object sender, EventArgs e)

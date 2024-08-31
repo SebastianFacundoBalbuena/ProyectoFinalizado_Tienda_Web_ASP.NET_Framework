@@ -11,17 +11,44 @@ namespace WebApplication
 {
 
 
-    public partial class Login
+    public partial class PerfilDeUsuario
     {
 
         /// <summary>
-        /// Control barraEmail.
+        /// Control GuardarCambios.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox barraEmail;
+        protected global::System.Web.UI.WebControls.Button GuardarCambios;
+
+        /// <summary>
+        /// Control VolverAtras.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button VolverAtras;
+
+        /// <summary>
+        /// Control barraNombre.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox barraNombre;
+
+        /// <summary>
+        /// Control barraApellido.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox barraApellido;
 
         /// <summary>
         /// Control barraContraseña.
@@ -33,30 +60,30 @@ namespace WebApplication
         protected global::System.Web.UI.WebControls.TextBox barraContraseña;
 
         /// <summary>
-        /// Control BtnIniciarSesion.
+        /// Control cerrarSesion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnIniciarSesion;
+        protected global::System.Web.UI.WebControls.Button cerrarSesion;
 
         /// <summary>
-        /// Control botonRegistrarse.
+        /// Control barraImagen.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button botonRegistrarse;
+        protected global::System.Web.UI.WebControls.TextBox barraImagen;
 
         /// <summary>
-        /// Control botonCancelar.
+        /// Control panelImagen.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button botonCancelar;
+        protected global::System.Web.UI.HtmlControls.HtmlImage panelImagen;
     }
 }

@@ -318,5 +318,60 @@ namespace Controllers
             }
         }
 
+
+        public Usuarios ValidarUsuario(Usuarios usuario)
+        {
+            try
+            {
+                Data data = new Data();
+                Usuarios usuarioActivo = new Usuarios();
+
+                data.setearConsulta("select Id,Email,Contraseña,TipoDeUsuario,FechaDeNacimiento,Nombre,Apellido,ImagenPerfil from Usuarios where Email = '"+usuario.Email+"' and Contraseña = '"+usuario.Contraseña+"'");
+                data.ejecutarConsulta();
+
+                while (data.LectorReader.Read())
+                {
+                    usuarioActivo.Id = (int)data.LectorReader["Id"];
+                    usuarioActivo.Email = (string)data.LectorReader["Email"];
+                    usuarioActivo.Contraseña = (string)data.LectorReader["Contraseña"];
+                    usuarioActivo.TipoDeUsuario = (int)data.LectorReader["TipoDeUsuario"];                  
+                    usuarioActivo.Nombre = (string)data.LectorReader["Nombre"];
+                    usuarioActivo.Apellido = (string)data.LectorReader["Apellido"];
+                    usuarioActivo.ImagenDePerfil = (string)data.LectorReader["ImagenPerfil"];
+                }
+
+
+
+                return usuarioActivo;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+
+        public void ModificarUsuario(Usuarios usuario)
+        {
+            Data data = new Data();
+            try
+            {
+               
+
+                data.setearConsulta("Update Usuarios set Contraseña = '"+usuario.Contraseña+"', Nombre = '"+usuario.Nombre+"',Apellido = '"+usuario.Apellido+"', ImagenPerfil = '"+usuario.ImagenDePerfil+"' where id = "+usuario.Id+"");
+                data.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                data.cerrarConexion();
+            }
+        }
+
     }
 }

@@ -25,10 +25,13 @@
 </head>
 <body class="d-flex flex-column min-vh-100" >
     <form id="form1" runat="server" class="d-flex flex-column flex-grow-1">
-        <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark" style="height:80px">
-            <div class="container-fluid" style=" display:flex ;align-items:center; justify-content:center">
-                <a class="navbar-brand" href="#">New Origins</a>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark" style=" height:80px ;display:flex ;align-items:center; justify-content:center">                                      
+            <div style="margin:15px">
+                <a style="margin-left:10px" class="navbar-brand" href="#">New Origins</a>
+                <br />
+             <a  style="font-size:15px;"  href="Default.aspx">Modo administrador</a>          
             </div>
+             <a href="PerfilDeUsuario.aspx"><img id="IconoImagen" runat="server" style="height:40px; width:40px" src="https://img.freepik.com/vector-premium/icono-marco-fotos-foto-vacia-blanco-vector-sobre-fondo-transparente-aislado-eps-10_399089-1290.jpg" alt="..." /></a>
         </nav>
         <hr />
         <div class="container content" style="overflow:auto">

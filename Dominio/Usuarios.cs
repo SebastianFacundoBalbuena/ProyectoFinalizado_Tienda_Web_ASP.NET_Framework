@@ -23,6 +23,7 @@ namespace Dominio
         public int Id
         {
             get { return id; }
+            set { id = value; }
         }
 
         public string Email
