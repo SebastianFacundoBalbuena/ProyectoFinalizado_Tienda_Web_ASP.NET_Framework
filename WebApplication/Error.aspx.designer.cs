@@ -15,21 +15,21 @@ namespace WebApplication
     {
 
         /// <summary>
-        /// Control volverAlFormulario.
+        /// Control mensajeDeError.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button volverAlFormulario;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl mensajeDeError;
 
         /// <summary>
-        /// Control volverInicio.
+        /// Control volverAlInicio.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button volverInicio;
+        protected global::System.Web.UI.WebControls.Button volverAlInicio;
     }
 }

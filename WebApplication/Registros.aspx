@@ -4,9 +4,14 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <div style="justify-content: center; display: flex; height: 100px">
-        <h1 style="font-size: 40px">Registros de ventas</h1>
-        <asp:Button Style="top: 60px; position: relative; height: 40px; right: 210px" Text="Volver" CssClass="btn btn-primary" runat="server" ID="Inicio" OnClick="Inicio_Click" />
+    <%//Barra inicio de registro %>
+    <div class="card text-center">
+        <div class="card-header"></div>
+        <div class="card-body">
+            <h2 class="card-title">Registro de ventas</h2>
+            <asp:Button Text="Volver" CssClass="btn btn-primary" runat="server" ID="Button1" OnClick="Inicio_Click" />
+        </div>
+        <div class="card-footer text-body-secondary"></div>
     </div>
 
     <br />
@@ -42,37 +47,59 @@
 
             <%//Area de ventas a seleccionar... %>
             <div class="row row-cols-1 row-cols-md-3 g-4" style="height: 50vw; display: flex; justify-content: center; flex-wrap: wrap;">
-                <div style="border: none; margin-left: 30px; height: 13vw; position: sticky; overflow: auto; min-width: 20vw">
-                    <label style="font-size: 30px">Codigo : </label>
-                    <asp:TextBox ID="barracodigo" CssClass="form-control" runat="server" AutoPostBack="true" OnTextChanged="barracodigo_TextChanged" ClientIDMode="Static" />
 
-                    <label style="font-size: 30px">Cantidad : </label>
-                    <asp:TextBox ID="barracantidad" CssClass="form-control" runat="server" AutoPostBack="true" OnTextChanged="barracantidad_TextChanged" />
-                </div>
                 <br />
-                <div style="border: none; margin-left: 30px; height: 13vw; position: sticky; overflow: auto; min-width: 20vw;">
-                    <label style="font-size: 30px">Producto : </label>
-                    <asp:DropDownList ID="barraproducto" CssClass="form-control" runat="server"></asp:DropDownList>
-                    <asp:Label ID="labelpreciototal" runat="server" Style="font-size: 30px" Text="Precio total: AR$"></asp:Label>
-                    <br />
-                    <asp:Button ID="botonagregar" CssClass="btn btn-primary" Text="Agregar al registro" runat="server" Style="margin-top: 20px; margin-left: 120px;" OnClientClick="return validacion()" OnClick="botonagregar_Click" />
+
+                <div class="row" style="width: 300vw">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Codigo : </h5>
+                                <asp:TextBox ID="barracodigo" CssClass="form-control" runat="server" AutoPostBack="true" OnTextChanged="barracodigo_TextChanged" ClientIDMode="Static" />
+                                <h5 class="card-title">Cantidad : </h5>
+                                <asp:TextBox ID="barracantidad" CssClass="form-control" runat="server" AutoPostBack="true" OnTextChanged="barracantidad_TextChanged" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Producto : </h5>
+                                <asp:DropDownList ID="barraproducto" CssClass="form-control" runat="server"></asp:DropDownList>
+                                <asp:Label ID="labelpreciototal" runat="server" Style="font-size: 20px; margin: 6px" Text="Precio total: AR$"></asp:Label>
+                                <br />
+                                <asp:Button ID="botonagregar" CssClass="btn btn-primary" Text="Agregar al registro" runat="server" Style="margin: 6px" OnClientClick="return validacion()" OnClick="botonagregar_Click" />
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <br />
                 <br />
 
                 <%//Panel de los registros :  %>
-                <div style="height: 30vw; width: 70vw; overflow: scroll; border: outset">
-                    <div style="display: flex">
-                        <asp:Label Text="Buscar por : " runat="server" Style="font-size: 25px" />
-                        <asp:DropDownList ID="tipoDeFecha" CssClass="form-control" Style="width: 120px; margin: 6px;" runat="server">
-                            <asp:ListItem Text="Mes" />
-                            <asp:ListItem Text="Año" />
-                            <asp:ListItem Text="Dia-Mes-Año" />
-                        </asp:DropDownList>
-                        <asp:TextBox ID="barraFecha" CssClass="form-control" Style="width: 200px; margin: 6px; height: 40px" runat="server" />
-                        <asp:Button ID="botonBuscarxFecha" CssClass="btn btn-primary" Style="padding: 3px; height: 40px; width: 122px; margin: 6px" Text="Buscar/Refrescar" runat="server" OnClick="botonBuscarxFecha_Click" />
+                <div class="card text-center" style=" width: 300vw">
+                    <div class="card-header">
+                        Listado del registro
                     </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Buscar por : </h5>
+
+                        <div class="card-footer text-body-secondary" style=" display: flex; justify-content: center">
+
+                            <asp:DropDownList ID="tipoDeFecha" CssClass="form-control" Style="width: 120px; margin: 6px;" runat="server">
+                                <asp:ListItem Text="Mes" />
+                                <asp:ListItem Text="Año" />
+                                <asp:ListItem Text="Dia-Mes-Año" />
+                            </asp:DropDownList>
+                            <asp:TextBox ID="barraFecha" CssClass="form-control" Style="width: 200px; margin: 6px; height: 40px" runat="server" />
+                            <asp:Button ID="botonBuscarxFecha" CssClass="btn btn-primary" Text="Buscar/Refrescar" runat="server" style="margin:6px" OnClick="botonBuscarxFecha_Click" />
+                        </div>
+
+
+                    </div>
+                    <br />
+
                     <asp:GridView class="table" ID="panelderegistro" AutoGenerateColumns="false" runat="server" OnRowCommand="panelderegistro_RowCommand">
                         <Columns>
                             <asp:BoundField HeaderText="Codigo" DataField="Codigo" />
@@ -90,6 +117,8 @@
 
                         </Columns>
                     </asp:GridView>
+
+                    <div class="card-footer text-body-secondary"></div>
                 </div>
                 <br />
                 <br />

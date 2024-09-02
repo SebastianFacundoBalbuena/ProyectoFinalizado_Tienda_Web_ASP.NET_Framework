@@ -6,16 +6,18 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-
-    <div style="justify-content: center; display: flex; height: 100px">
-        <h1 style="font-size: 40px">Reportes</h1>
-        <asp:Button Style="top: 60px; position: relative; height: 40px; right: 116px" Text="Volver" CssClass="btn btn-primary" runat="server" ID="Inicio" OnClick="Inicio_Click" />
+    <div class="card text-center">
+        <div class="card-header"></div>
+        <div class="card-body">
+            <h2 class="card-title">Reporte de ventas</h2>
+            <asp:Button Text="Volver" CssClass="btn btn-primary" runat="server" ID="Inicio" OnClick="Inicio_Click" />
+        </div>
+        <div class="card-footer text-body-secondary"></div>
     </div>
 
-    <asp:Label Text="Buscar año : " style="font-size:20px;margin-left: 250px;" runat="server" />
+    <asp:Label Text="Buscar año : " Style="font-size: 20px; margin-left: 250px;" runat="server" />
     <asp:DropDownList ID="barraAño" runat="server" CssClass="form-control" Style="width: 100px; margin-left: 250px;" AutoPostBack="true" OnSelectedIndexChanged="barraAño_SelectedIndexChanged">
     </asp:DropDownList>
-
 
     <asp:ScriptManager runat="server" />
     <asp:UpdatePanel runat="server">
@@ -53,9 +55,10 @@
                 }
             </script>
 
-            <div style="display: flex; justify-content: center; overflow: hidden; flex-wrap: wrap; gap: 10px;">
+            <div style="display: flex; justify-content: center; overflow: hidden; flex-wrap: wrap; gap: 10px;">                
                 <div id="chart_div"></div>
                 <div style="border: medium; width: 400px; height: 400px; overflow: scroll;">
+                    <h5>Detalles :</h5>
                     <asp:GridView runat="server" class="table" ID="panelReportes" AutoGenerateColumns="false">
                         <Columns>
                             <asp:BoundField HeaderText="Producto" DataField="Producto" />

@@ -33,7 +33,8 @@ namespace WebApplication
 
                     if (usuario.TipoDeUsuario == 0)
                     {
-                        Response.Redirect("InicioClientes.aspx", false);
+                        Session.Add("Error", "Debes ser administrador para acceder a los registros");
+                        Response.Redirect("Error.aspx", false);
                     }
                 }
 
@@ -70,10 +71,11 @@ namespace WebApplication
 
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                Response.Redirect("Error.aspx",false);
+                Session.Add("Error", ex.ToString());
+                Response.Redirect("Error.aspx", false);
             }
 
 
@@ -114,12 +116,14 @@ namespace WebApplication
                 }
                 else if (barracodigo.Text == "")
                 {
+                    Session.Add("Error", "Debe ingresar el codigo del producto");
                     Response.Redirect("Error.aspx", false);
                 }
             }
-            catch (Exception )
+            catch (Exception ex )
             {
 
+                Session.Add("Error", ex.ToString());
                 Response.Redirect("Error.aspx", false);
             }
         }
@@ -154,9 +158,10 @@ namespace WebApplication
 
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
+                Session.Add("Error", ex.ToString());
                 Response.Redirect("Error.aspx", false);
             }
         }
@@ -184,9 +189,10 @@ namespace WebApplication
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
+                Session.Add("Error", ex.ToString());
                 Response.Redirect("Error.aspx", false);
             }
         }
@@ -229,9 +235,10 @@ namespace WebApplication
 
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
+                Session.Add("Error", ex.ToString());
                 Response.Redirect("Error.aspx", false);
             }
         }
@@ -269,9 +276,10 @@ namespace WebApplication
                 panelderegistro.DataBind();
                
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
+                Session.Add("Error", ex.ToString());
                 Response.Redirect("Error.aspx", false);
             }
 

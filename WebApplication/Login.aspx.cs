@@ -42,8 +42,17 @@ namespace WebApplication
 
                 if(Activo.Id != 0)
                 {
-                    Session.Add("UsuarioActivo", Activo);
-                    Response.Redirect("ProductosCliente.aspx", false);
+
+                    if(Activo.TipoDeUsuario == 0)
+                    {
+                        Session.Add("UsuarioActivo", Activo);
+                        Response.Redirect("ProductosCliente.aspx", false);
+                    } else
+                    {
+                        Session.Add("UsuarioActivo", Activo);
+                        Response.Redirect("Default.aspx", false);
+                    }
+
 
                 }
                 else
@@ -59,7 +68,8 @@ namespace WebApplication
             catch (Exception ex)
             {
 
-                throw ex;
+                Session.Add("Error", ex.ToString());
+                Response.Redirect("Error.aspx", false);
             }
         }
     }

@@ -17,6 +17,12 @@ namespace WebApplication
 
             try
             {
+
+                if (Session["UsuarioActivo"] == null)
+                {
+                    Response.Redirect("Login.aspx", false);
+                }
+
                 if (!IsPostBack)
                 {
                     repetidor.DataSource = control.listar();
@@ -31,9 +37,10 @@ namespace WebApplication
                     labelCantidad.Text = contador.ToString();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
+                Session.Add("Error", ex.ToString());
                 Response.Redirect("Error.aspx", false);
             }
 
@@ -51,7 +58,8 @@ namespace WebApplication
             catch (Exception ex)
             {
 
-                throw ex;
+                Session.Add("Error", ex.ToString());
+                Response.Redirect("Error.aspx", false);
             }
         }
 
@@ -77,9 +85,10 @@ namespace WebApplication
                     repetidor.DataBind();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
+                Session.Add("Error", ex.ToString());
                 Response.Redirect("Error.aspx", false);
             }
         }
@@ -117,7 +126,8 @@ namespace WebApplication
             catch (Exception ex)
             {
 
-                throw ex;
+                Session.Add("Error", ex.ToString());
+                Response.Redirect("Error.aspx", false);
             }
         }
 

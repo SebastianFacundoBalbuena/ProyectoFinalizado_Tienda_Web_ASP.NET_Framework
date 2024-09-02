@@ -34,6 +34,7 @@ namespace WebApplication
                 NewUsuario.Email = barraEmail.Text;
                 NewUsuario.Contraseña = barraContraseña.Text;
                 NewUsuario.TipoDeUsuario = 0;
+                NewUsuario.ImagenDePerfil = "https://img.freepik.com/vector-premium/icono-marco-fotos-foto-vacia-blanco-vector-sobre-fondo-transparente-aislado-eps-10_399089-1290.jpg";
 
                 control.AgregarUsuario(NewUsuario);
                 Response.Redirect("Login.aspx",false);
@@ -42,7 +43,8 @@ namespace WebApplication
             catch (Exception ex)
             {
 
-                throw ex;
+                Session.Add("Error", ex.ToString());
+                Response.Redirect("Error.aspx", false);
             }
 
         }

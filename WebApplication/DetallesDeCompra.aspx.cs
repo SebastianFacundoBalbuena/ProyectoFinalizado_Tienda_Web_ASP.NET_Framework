@@ -13,32 +13,48 @@ namespace WebApplication
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["ListaVieja"] != null)
+            try
             {
-                List<Articulos> listaCarritoSessions = Session["ListaVieja"] as List<Articulos>;
-                int contador = 0;
-                contador = listaCarritoSessions.Count;
-                labelCantidad.Text = contador.ToString();
-
-                decimal precioTotal = 0;
-
-                foreach (var item in listaCarritoSessions)
+                if (Session["ListaVieja"] != null)
                 {
-                    precioTotal += item.Precio;
+
+                    if (Session["UsuarioActivo"] == null)
+                        Response.Redirect("Login.aspx", false);
+
+
+                    List<Articulos> listaCarritoSessions = Session["ListaVieja"] as List<Articulos>;
+                    int contador = 0;
+                    contador = listaCarritoSessions.Count;
+                    labelCantidad.Text = contador.ToString();
+
+                    decimal precioTotal = 0;
+
+                    foreach (var item in listaCarritoSessions)
+                    {
+                        precioTotal += item.Precio;
+                    }
+
+                    labelPrecioTotal.Text = "Precio total : AR$" + precioTotal.ToString() + "";
                 }
 
-                labelPrecioTotal.Text = "Precio total : AR$" + precioTotal.ToString() + "";
-            }
+                if (!IsPostBack)
+                {
+                    Controler controler = new Controler();
 
-            if (!IsPostBack)
+                    repetidor.DataSource = Session["ListaVieja"];
+                    repetidor.DataBind();
+
+
+                }
+            }
+            catch (Exception ex)
             {
-                Controler controler = new Controler();
 
-                repetidor.DataSource = Session["ListaVieja"];
-                repetidor.DataBind();
-
-
+                Session.Add("Error", ex.ToString());
+                Response.Redirect("Error.aspx", false);
             }
+
+
         }
 
         protected void VolverInicio_Click(object sender, EventArgs e)
@@ -46,10 +62,6 @@ namespace WebApplication
             Response.Redirect("ProductosCliente.aspx", false);
         }
 
-        protected void AceptarCompra_Click(object sender, EventArgs e)
-        {
-
-        }
 
         protected void detalles_Click(object sender, EventArgs e)
         {
@@ -62,7 +74,8 @@ namespace WebApplication
             catch (Exception ex)
             {
 
-                throw ex;
+                Session.Add("Error", ex.ToString());
+                Response.Redirect("Error.aspx", false);
             }
         }
 
@@ -94,9 +107,17 @@ namespace WebApplication
             catch (Exception ex)
             {
 
-                throw ex;
+                Session.Add("Error", ex.ToString());
+                Response.Redirect("Error.aspx", false);
             }
 
+        }
+
+
+        protected void btnAceptar_Click(object sender, EventArgs e)
+        {
+            Session.Remove("ListaVieja");
+            Response.Redirect("ProductosCliente.aspx", false);
         }
     }
 }

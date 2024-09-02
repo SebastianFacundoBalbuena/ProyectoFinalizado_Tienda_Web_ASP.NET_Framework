@@ -23,15 +23,31 @@ namespace WebApplication
         {
             try
             {
+                if (Session["UsuarioActivo"] != null)
+                {
+                    Usuarios newUsuario = Session["UsuarioActivo"] as Usuarios;
+                    if(newUsuario.TipoDeUsuario == 0)
+                    {
+                        Session.Add("Error", "Debes ser administrador para acceder al formulario");
+                        Response.Redirect("Error.aspx", false);
+                    }
+                }
+                else
+                {
+                    Response.Redirect("Login.aspx", false);
+                }
+
+
                 Controler control = new Controler();
 
                 listaCategoria = control.CategoriaLista();
                 listaMarca = control.MarcaListar();
                 Articulos = control.listar();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
+                Session.Add("Error", ex.ToString());
                 Response.Redirect("Error.aspx", false);
             }
 
@@ -100,11 +116,12 @@ namespace WebApplication
 
                 Response.Redirect("Productos.aspx", false);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
 
-                Response.Redirect("error.aspx", false);
+                Session.Add("Error", ex.ToString());
+                Response.Redirect("Error.aspx", false);
 
             }
         }
@@ -124,9 +141,10 @@ namespace WebApplication
                     panelImagen.Src = imagen;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
+                Session.Add("Error", ex.ToString());
                 Response.Redirect("Error.aspx", false);
             }
 

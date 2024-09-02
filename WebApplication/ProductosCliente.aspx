@@ -5,7 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <%//Barra de busqueda y boton agregar art. y volver al inicio %>
-    <div class="card text-center" style="justify-content: center; display: flex; align-items: center; overflow: hidden">       
+    <div class="card text-center" style="justify-content: center; display: flex; align-items: center; overflow: hidden">
         <div class="card-header">
         </div>
         <div class="card-body" style="width: 600px;">
@@ -15,8 +15,10 @@
             <asp:Button Text="Volver al inicio" CssClass="btn btn-primary" runat="server" ID="VolverInicio" OnClick="VolverInicio_Click" />
             <br />
             <br />
-        <a href="DetallesDeCompra.aspx"> <img src="https://cdn-icons-png.flaticon.com/512/3225/3225209.png" alt="Carrito de Compras" style="width: 35px; height: auto; margin:8px"> </a>
-            <asp:Label ID="labelCantidad" style="color:black; font-size:20px;" Text="0" runat="server" />
+            <a href="DetallesDeCompra.aspx">
+                <img src="https://cdn-icons-png.flaticon.com/512/3225/3225209.png" alt="Carrito de Compras" style="width: 35px; height: auto; margin: 8px">
+            </a>
+            <asp:Label ID="labelCantidad" Style="color: black; font-size: 20px;" Text="0" runat="server" />
         </div>
     </div>
 
@@ -40,8 +42,8 @@
                                 <p class="card-text"><%#Eval("Marca") %>.</p>
                                 <p class="card-text"><%#Eval("Descripcion") %>.</p>
                                 <p class="card-text"><small class="text-body-secondary">AR$<%#Eval("Precio") %></small></p>
-                                <asp:Button ID="AgregarCarrito" CssClass="btn btn-info" Text="Agregar al carrito" runat="server" style="margin:6px" CommandArgument='<%#Eval("Id")%>' OnClick="AgregarCarrito_Click" />
-                                <div style="position:relative; left:25px">                                    
+                                <asp:Button ID="AgregarCarrito" CssClass="btn btn-info" Text="Agregar al carrito" runat="server" Style="margin: 6px" CommandArgument='<%#Eval("Id")%>' OnClick="AgregarCarrito_Click" />
+                                <div style="position: relative; left: 25px">
                                     <asp:Button CssClass="btn btn-primary" Text="Ver detalles" runat="server" ID="detalles" CommandArgument='<%#Eval("Id") %>' OnClick="detalles_Click" />
                                 </div>
                             </div>

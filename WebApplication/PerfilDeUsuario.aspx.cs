@@ -18,7 +18,7 @@ namespace WebApplication
 			{
 				if (Session["UsuarioActivo"] == null)
 				{
-					Response.Redirect("Error.aspx", false);
+					Response.Redirect("Login.aspx", false);
 				}
 				else
 				{
@@ -42,8 +42,9 @@ namespace WebApplication
 			catch (Exception ex)
 			{
 
-				throw ex;
-			}
+                Session.Add("Error", ex.ToString());
+                Response.Redirect("Error.aspx", false);
+            }
         }
 
         protected void barraImagen_TextChanged(object sender, EventArgs e)
@@ -68,14 +69,20 @@ namespace WebApplication
 				UserViejo = (Usuarios)Session["UsuarioActivo"];
 				Controler control = new Controler();
 
-				UserModificado.Id = UserViejo.Id;
-				UserModificado.Nombre = barraNombre.Text;
-				UserModificado.Apellido = barraApellido.Text;
-				UserModificado.Contraseña = barraContraseña.Text;
-				UserModificado.ImagenDePerfil = barraImagen.Text;
+				if(barraApellido.Text != "" && barraNombre.Text != "" &&  barraContraseña.Text != "" && barraImagen.Text != "")
+				{
 
-				control.ModificarUsuario(UserModificado);
-				Response.Redirect("ProductosCliente.aspx", false);
+                    UserModificado.Id = UserViejo.Id;
+                    UserModificado.Nombre = barraNombre.Text;
+                    UserModificado.Apellido = barraApellido.Text;
+                    UserModificado.Contraseña = barraContraseña.Text;
+                    UserModificado.ImagenDePerfil = barraImagen.Text;
+
+                    control.ModificarUsuario(UserModificado);
+                    Response.Redirect("ProductosCliente.aspx", false);
+
+                }
+
 
 
 				
@@ -83,7 +90,9 @@ namespace WebApplication
 			catch (Exception ex)
 			{
 
-				throw ex;
+				
+				Session.Add("Error", ex.ToString());
+				Response.Redirect("Error.aspx", false);
 			}
         }
 

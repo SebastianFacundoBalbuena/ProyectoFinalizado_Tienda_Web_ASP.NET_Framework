@@ -18,21 +18,32 @@ namespace WebApplication
         protected void IrAProductos_Click(object sender, EventArgs e)
         {
 
-            if (Session["UsuarioActivo"] != null)
+            try
             {
-                Response.Redirect("ProductosCliente.aspx", false);
+                if (Session["UsuarioActivo"] != null)
+                {
+                    Response.Redirect("ProductosCliente.aspx", false);
+                }
+                else
+                {
+                    Response.Redirect("Login.aspx", false);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Response.Redirect("Login.aspx", false);
+
+                Session.Add("Error", ex.ToString());
+                Response.Redirect("Error.aspx", false);
             }
 
-            
+
+
+
         }
 
         protected void botonRegistarse_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Registrarse.aspx",false);
+            Response.Redirect("Registrarse.aspx", false);
         }
     }
 }

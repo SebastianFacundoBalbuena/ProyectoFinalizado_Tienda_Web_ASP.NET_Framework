@@ -10,14 +10,14 @@
         <div class="card-body" style="width: 600px;">
             <h5 class="card-title">Tu lista de productos a comprar : </h5>
 
-            <asp:Button Text="Confirmar compra" CssClass="btn btn-info" runat="server" ID="AceptarCompra" OnClick="AceptarCompra_Click" />
+            <asp:Button Text="Confirmar compra" CssClass="btn btn-info" runat="server" ID="AceptarCompra" OnClientClick="return Confirmacion()"  />
             <asp:Button Text="Volver al Stock" CssClass="btn btn-primary" runat="server" ID="VolverInicio" OnClick="VolverInicio_Click" />
             <br />
-            <asp:Label ID="labelPrecioTotal" style="font-size:20px" Text="Precio total : AR$0" runat="server" />
+            <asp:Label ID="labelPrecioTotal" Style="font-size: 20px" Text="Precio total : AR$0" runat="server" />
             <br />
-            
+
             <a href="#">
-                <img src="https://cdn-icons-png.flaticon.com/512/3225/3225209.png" alt="Carrito de Compras" style=" width: 35px; height: auto; margin: 8px">
+                <img src="https://cdn-icons-png.flaticon.com/512/3225/3225209.png" alt="Carrito de Compras" style="width: 35px; height: auto; margin: 8px">
             </a>
             <asp:Label ID="labelCantidad" Style="color: black; font-size: 20px;" Text="0" runat="server" />
         </div>
@@ -35,7 +35,7 @@
                             <img src="<%#Eval("Imagen") %>" class="img-fluid rounded-start" alt="ErrorDeCarga" style="margin-top: 20px">
                         </div>
                         <div class="col-md-8">
-                            <div class="card-body" style="overflow:hidden">
+                            <div class="card-body" style="overflow: hidden">
                                 <h5 class="card-title"><%#Eval("Nombre") %></h5>
                                 <p class="card-text"><%#Eval("Marca") %>.</p>
                                 <p class="card-text"><%#Eval("Descripcion") %>.</p>
@@ -52,4 +52,22 @@
             </ItemTemplate>
         </asp:Repeater>
     </div>
+
+    <%//Div alerta: confirmacion de compra %>
+    <div id="customAlert" class="custom-alert-content" style="display: none; position: fixed; left: 42%; top: 40%; background-color: rgba(144, 238, 144, 0.5); z-index: 1000; padding: 20px;">
+        <div class="alert alert-success" role="alert">
+            ¡Compra realizada exitosamente!
+        </div>
+        <div>
+            <asp:Button ID="btnAceptar" class="btn btn-success" Style="position: relative; left: 37%" OnClick="btnAceptar_Click" Text="Aceptar" runat="server" />
+        </div>
+    </div>
+
+    <script>
+        function Confirmacion() {
+            document.getElementById('customAlert').style.display = 'block';
+            return false;
+        }
+    </script>
+
 </asp:Content>

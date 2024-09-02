@@ -33,7 +33,10 @@ namespace WebApplication
 
                     if (usuario.TipoDeUsuario == 0)
                     {
-                        Response.Redirect("InicioClientes.aspx", false);
+
+
+                        Session.Add("Error", "Debes ser administrador para acceder a los reportes");
+                        Response.Redirect("Error.aspx", false);
                     }
                 }
 
@@ -67,7 +70,8 @@ namespace WebApplication
             catch (Exception ex)
             {
 
-                throw ex;
+                Session.Add("Error", ex.ToString());
+                Response.Redirect("Error.aspx", false);
             }
         }
 
@@ -179,7 +183,9 @@ namespace WebApplication
             catch (Exception ex)
             {
 
-                return "Error al obtener datos: " + ex.Message;
+                Session.Add("Error", ex.ToString());
+                Response.Redirect("Error.aspx", false);
+                return ex.ToString();
             }
         }
 
@@ -194,9 +200,10 @@ namespace WebApplication
             {
                 ObtenerDatos();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
+                Session.Add("Error", ex.ToString());
                 Response.Redirect("Error.aspx", false);
             }
             

@@ -304,7 +304,7 @@ namespace Controllers
 
             try
             {
-                data.setearConsulta("insert Usuarios (Email, Contraseña,TipoDeUsuario,Nombre,Apellido)Values('" + usuario.Email + "','" + usuario.Contraseña + "'," + usuario.TipoDeUsuario + ",'" + usuario.Nombre + "','" + usuario.Apellido + "')");
+                data.setearConsulta("insert Usuarios (Email, Contraseña,TipoDeUsuario,Nombre,Apellido,ImagenPerfil)Values('" + usuario.Email + "','" + usuario.Contraseña + "'," + usuario.TipoDeUsuario + ",'" + usuario.Nombre + "','" + usuario.Apellido + "','"+usuario.ImagenDePerfil+"')");
                 data.EjecutarAccion();
             }
             catch (Exception ex)

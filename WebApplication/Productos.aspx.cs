@@ -35,7 +35,8 @@ namespace WebApplication
 
                     if (usuario.TipoDeUsuario == 0)
                     {
-                        Response.Redirect("InicioClientes.aspx", false);
+                        Session.Add("Error", "Debes ser administrador para acceder a la gestion de productos");
+                        Response.Redirect("Error.aspx", false);
                     }
                 }
 
@@ -53,9 +54,10 @@ namespace WebApplication
                     repetidor.DataBind();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
+                Session.Add("Error", ex.ToString());
                 Response.Redirect("Error.aspx", false);
             }
 
@@ -78,9 +80,10 @@ namespace WebApplication
                 string id = ((Button)sender).CommandArgument;
                 Response.Redirect("DetallesArticulo.aspx?ID=" + id + "", false);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
+                Session.Add("Error", ex.ToString());
                 Response.Redirect("Error.aspx", false);
             }
 
@@ -92,13 +95,14 @@ namespace WebApplication
             try
             {
                 string id = ((Button)sender).CommandArgument;
-                Response.Redirect("Formulario.aspx?ID="+id+"");
+                Response.Redirect("Formulario.aspx?ID="+id+"", false);
             }
             catch (Exception ex)
             {
 
-               
-                throw ex;
+
+                Session.Add("Error", ex.ToString());
+                Response.Redirect("Error.aspx", false);
             }
 
 
@@ -128,9 +132,10 @@ namespace WebApplication
 
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
+                Session.Add("Error", ex.ToString());
                 Response.Redirect("Error.aspx", false);
             }
         }
@@ -149,9 +154,10 @@ namespace WebApplication
 
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
+                Session.Add("Error", ex.ToString());
                 Response.Redirect("Error.aspx", false);
             }
 

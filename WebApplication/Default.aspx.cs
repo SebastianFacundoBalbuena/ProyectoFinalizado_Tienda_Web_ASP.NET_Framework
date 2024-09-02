@@ -25,14 +25,17 @@ namespace WebApplication
 
                     if(usuario.TipoDeUsuario == 0)
                     {
-                        Response.Redirect("InicioClientes.aspx", false);
+
+                        Session.Add("Error", "Debes ser administrador para acceder a esta pagina");
+                        Response.Redirect("Error.aspx", false);
                     }
                 }
             }
             catch (Exception ex)
             {
 
-                throw ex;
+                Session.Add("Error", ex.ToString());
+                Response.Redirect("Error.aspx", false);
             }
         }
 

@@ -9,19 +9,24 @@ namespace WebApplication
 {
     public partial class Error : System.Web.UI.Page
     {
+      
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["Error"] != null)
+                mensajeDeError.InnerText = Session["Error"].ToString();
         }
 
-        protected void volverAlFormulario_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("Formulario.aspx");
-        }
 
         protected void volverInicio_Click(object sender, EventArgs e)
         {
             Response.Redirect("Default.aspx", false);
         }
+
+        protected void volverAlInicio_Click(object sender, EventArgs e)
+        {
+            Session.Remove("Error");
+            Response.Redirect("InicioClientes.aspx", false);
+        }
+
     }
 }

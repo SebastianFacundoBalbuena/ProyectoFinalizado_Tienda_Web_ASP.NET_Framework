@@ -38,5 +38,5 @@
         </div>
     </div>
     <br />
-    <asp:Button CssClass="btn btn-primary" Text="Modo cliente" runat="server"  ID="ModoCliente" OnClick="ModoCliente_Click"/>
+    <asp:Button CssClass="btn btn-dark" Text="Modo cliente" runat="server"  ID="ModoCliente" OnClick="ModoCliente_Click"/>
 </asp:Content>
