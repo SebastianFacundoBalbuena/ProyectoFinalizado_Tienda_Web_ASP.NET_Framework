@@ -28,6 +28,10 @@ namespace WebApplication
             {
                 Usuarios NewUsuario = new Usuarios();
                 Controler control = new Controler();
+                Usuarios ValidarEmail = new Usuarios();
+                
+
+                
 
                 NewUsuario.Nombre = barraNombre.Text;
                 NewUsuario.Apellido = barraApellido.Text;
@@ -36,8 +40,20 @@ namespace WebApplication
                 NewUsuario.TipoDeUsuario = 0;
                 NewUsuario.ImagenDePerfil = "https://img.freepik.com/vector-premium/icono-marco-fotos-foto-vacia-blanco-vector-sobre-fondo-transparente-aislado-eps-10_399089-1290.jpg";
 
-                control.AgregarUsuario(NewUsuario);
-                Response.Redirect("Login.aspx",false);
+                ValidarEmail = control.ValidarUsuario(NewUsuario);
+
+                if(ValidarEmail.Email != null)
+                {
+                    Session.Add("Error", "Ya existe un usuario con el Email ingresado");
+                    Response.Redirect("Error.aspx", false);
+                }
+                else
+                {
+                    control.AgregarUsuario(NewUsuario);
+                    Response.Redirect("Login.aspx", false);
+                }
+
+
 
             }
             catch (Exception ex)

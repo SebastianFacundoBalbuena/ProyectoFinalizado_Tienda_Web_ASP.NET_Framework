@@ -326,7 +326,7 @@ namespace Controllers
                 Data data = new Data();
                 Usuarios usuarioActivo = new Usuarios();
 
-                data.setearConsulta("select Id,Email,Contraseña,TipoDeUsuario,FechaDeNacimiento,Nombre,Apellido,ImagenPerfil from Usuarios where Email = '"+usuario.Email+"' and Contraseña = '"+usuario.Contraseña+"'");
+                data.setearConsulta("select Id,Email,Contraseña,TipoDeUsuario,FechaDeNacimiento,Nombre,Apellido,ImagenPerfil from Usuarios where Email = '"+usuario.Email+"'");
                 data.ejecutarConsulta();
 
                 while (data.LectorReader.Read())

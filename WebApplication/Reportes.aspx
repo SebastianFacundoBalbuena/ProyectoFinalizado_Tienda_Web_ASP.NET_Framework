@@ -14,7 +14,7 @@
         </div>
         <div class="card-footer text-body-secondary"></div>
     </div>
-
+    <br />
     <asp:Label Text="Buscar año : " Style="font-size: 20px; margin-left: 250px;" runat="server" />
     <asp:DropDownList ID="barraAño" runat="server" CssClass="form-control" Style="width: 100px; margin-left: 250px;" AutoPostBack="true" OnSelectedIndexChanged="barraAño_SelectedIndexChanged">
     </asp:DropDownList>

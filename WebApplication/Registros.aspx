@@ -46,7 +46,7 @@
         <ContentTemplate>
 
             <%//Area de ventas a seleccionar... %>
-            <div class="row row-cols-1 row-cols-md-3 g-4" style="height: 50vw; display: flex; justify-content: center; flex-wrap: wrap;">
+            <div class="row row-cols-1 row-cols-md-3 g-4" style="height: 50vw; display: flex; justify-content: center; flex-wrap: wrap; overflow:auto">
 
                 <br />
 

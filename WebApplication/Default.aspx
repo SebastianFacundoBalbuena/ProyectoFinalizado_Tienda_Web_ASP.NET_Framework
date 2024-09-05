@@ -32,7 +32,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Reportes</h5>
                     <p class="card-text">Acceso a los informes y análisis detallados sobre el desempeño de tus productos y operaciones. Obtener recomendaciones basadas en datos para optimizar procesos y mejorar la rentabilidad.</p>
-                    <asp:Button Text="Reportes de ventas" class="btn btn-primary" ID="botonReportes" runat="server" OnClick="botonReportes_Click" />
+                    <asp:Button Text="Reporte de ventas" class="btn btn-primary" ID="botonReportes" runat="server" OnClick="botonReportes_Click" />
                 </div>
             </div>
         </div>

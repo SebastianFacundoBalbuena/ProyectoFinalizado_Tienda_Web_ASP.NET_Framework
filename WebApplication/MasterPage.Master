@@ -35,7 +35,7 @@
                 <img id="IconoImagen" runat="server" style="height: 40px; border-radius:45% ; width: 40px" src="https://img.freepik.com/vector-premium/icono-marco-fotos-foto-vacia-blanco-vector-sobre-fondo-transparente-aislado-eps-10_399089-1290.jpg" alt="..." /></a>
         </nav>
         <hr />
-        <div class="container content" style="overflow: auto">
+        <div class="container content" >
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
         </div>

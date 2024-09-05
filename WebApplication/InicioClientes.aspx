@@ -4,13 +4,13 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <div style="height: 380px" id="carouselExampleIndicators" class="carousel slide">
+    <div style="height: 380px;" id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2900">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
         </div>
-        <div style="height: 400px" class="carousel-inner">
+        <div style="height: 400px;" class="carousel-inner">
             <div class="carousel-item active">
                 <img style="height: 400px" src="https://academia.nubimetrics.com/hubfs/Produtos%20eletr%C3%B4nicos%20mais%20vendidos%20do%20Mercado%20Livre.jpg" class="d-block w-100" alt="...">
             </div>
