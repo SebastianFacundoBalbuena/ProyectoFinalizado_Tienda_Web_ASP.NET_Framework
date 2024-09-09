@@ -72,7 +72,7 @@ namespace WebApplication
 
 
 
-                if (barracodigo.Text != null && barraproducto.Text != null && barraprecio.Text != null)
+                if (barracodigo.Text != null && barraproducto.Text != null && barraprecio.Text != null && barraimagen.Text != null)
                 {
                     Categoria categoria = new Categoria();
                     Marca marca = new Marca();
@@ -112,6 +112,11 @@ namespace WebApplication
                         control.Agregar(newArticulo, categoria, marca);
                     }
 
+                }
+                else
+                {
+                    Session.Add("Error", "Algunos campos no se han completados, verifiquelos.");
+                    Response.Redirect("Error.aspx", false);
                 }
 
                 Response.Redirect("Productos.aspx", false);

@@ -11,6 +11,7 @@ namespace WebApplication
 {
     public partial class Login : System.Web.UI.Page
     {
+        public string Pass { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -23,6 +24,7 @@ namespace WebApplication
 
         protected void botonCancelar_Click(object sender, EventArgs e)
         {
+            Session.Remove("Categoria");
             Response.Redirect("InicioClientes.aspx", false);
         }
 
@@ -39,6 +41,9 @@ namespace WebApplication
                 NewUsuario.Contraseña = barraContraseña.Text;
 
                 Activo = control.ValidarUsuario(NewUsuario);
+
+
+
 
                 if(Activo.Id != 0)
                 {
@@ -57,7 +62,8 @@ namespace WebApplication
                 }
                 else
                 {
-                    Response.Redirect("Login.aspx", false);
+                    Session.Add("Error", "Email o Contraseña incorrecta.");
+                    Response.Redirect("Error.aspx", false);
                 }
                 
 
@@ -70,6 +76,30 @@ namespace WebApplication
 
                 Session.Add("Error", ex.ToString());
                 Response.Redirect("Error.aspx", false);
+            }
+        }
+
+        protected void CheckContraseñaVisible_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                bool esCheck = CheckContraseñaVisible.Checked;
+
+
+                if (esCheck == true)
+                {
+                    Pass = barraContraseña.Text;
+                }
+                else
+                {
+                    Pass = "";
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Session.Add("Error", ex.ToString());
+                Response.Redirect("Error", false);
             }
         }
     }

@@ -326,7 +326,7 @@ namespace Controllers
                 Data data = new Data();
                 Usuarios usuarioActivo = new Usuarios();
 
-                data.setearConsulta("select Id,Email,Contraseña,TipoDeUsuario,FechaDeNacimiento,Nombre,Apellido,ImagenPerfil from Usuarios where Email = '"+usuario.Email+"'");
+                data.setearConsulta("select Id,Email,Contraseña,TipoDeUsuario,FechaDeNacimiento,Nombre,Apellido,ImagenPerfil from Usuarios where Email = '"+usuario.Email+"' and Contraseña = '"+usuario.Contraseña+"'");
                 data.ejecutarConsulta();
 
                 while (data.LectorReader.Read())
@@ -361,6 +361,43 @@ namespace Controllers
 
                 data.setearConsulta("Update Usuarios set Contraseña = '"+usuario.Contraseña+"', Nombre = '"+usuario.Nombre+"',Apellido = '"+usuario.Apellido+"', ImagenPerfil = '"+usuario.ImagenDePerfil+"' where id = "+usuario.Id+"");
                 data.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                data.cerrarConexion();
+            }
+        }
+
+
+        public bool TodosLosUsuarios(Usuarios usuario)
+        {
+            Data data = new Data();
+            try
+            {
+                Usuarios usuarioEncontrado = new Usuarios();
+                data.setearConsulta("select Email from Usuarios where Email = '"+usuario.Email+"'");
+                data.ejecutarConsulta();
+
+                while (data.LectorReader.Read())
+                {
+                    
+                    usuarioEncontrado.Email = (string)data.LectorReader["Email"];
+                }
+
+                if(usuarioEncontrado.Email != null)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
             }
             catch (Exception ex)
             {

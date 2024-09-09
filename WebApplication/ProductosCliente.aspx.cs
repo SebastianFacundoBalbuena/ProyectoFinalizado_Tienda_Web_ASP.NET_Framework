@@ -18,15 +18,42 @@ namespace WebApplication
             try
             {
 
-                if (Session["UsuarioActivo"] == null)
-                {
-                    Response.Redirect("Login.aspx", false);
-                }
 
-                if (!IsPostBack)
+                if (Session["Categoria"] != null && Session["UsuarioActivo"] != null)
                 {
-                    repetidor.DataSource = control.listar();
-                    repetidor.DataBind();
+                    string categoria = Session["Categoria"] as string;
+                    if (categoria == "Celulares")
+                    {
+                        repetidor.DataSource = control.listar().FindAll(x => x.Categoria == "Celulares");
+                        repetidor.DataBind();
+                        Session.Remove("Categoria");
+                    }
+                    else if (categoria == "Audio")
+                    {
+                        repetidor.DataSource = control.listar().FindAll(x => x.Categoria == "Audio");
+                        repetidor.DataBind();
+                        Session.Remove("Categoria");
+                    }
+                    else if (categoria == "Televisores")
+                    {
+                        repetidor.DataSource = control.listar().FindAll(x => x.Categoria == "Televisores");
+                        repetidor.DataBind();
+                        Session.Remove("Categoria");
+                    }
+                    else if (categoria == "Media")
+                    {
+                        repetidor.DataSource = control.listar().FindAll(x => x.Categoria == "Media");
+                        repetidor.DataBind();
+                        Session.Remove("Categoria");
+                    }
+                }
+                else
+                {
+                    if (!IsPostBack)
+                    {
+                        repetidor.DataSource = control.listar();
+                        repetidor.DataBind();
+                    }
                 }
 
                 if (Session["ListaVieja"] != null)
@@ -53,7 +80,7 @@ namespace WebApplication
             {
                 string ID = ((Button)sender).CommandArgument;
 
-                Response.Redirect("DetallesArticuloCliente.aspx?ID="+ID+"", false);
+                Response.Redirect("DetallesArticuloCliente.aspx?ID=" + ID + "", false);
             }
             catch (Exception ex)
             {
@@ -74,12 +101,12 @@ namespace WebApplication
             {
                 Controler control = new Controler();
 
-                if(barraBuscar.Text != "")
+                if (barraBuscar.Text != "")
                 {
                     repetidor.DataSource = control.listar().FindAll(x => x.Nombre.ToUpper().Contains(barraBuscar.Text.ToUpper()) || x.Marca.ToUpper().Contains(barraBuscar.Text.ToUpper()) || x.Categoria.ToUpper().Contains(barraBuscar.Text.ToUpper()));
                     repetidor.DataBind();
                 }
-                else if(barraBuscar.Text == "")
+                else if (barraBuscar.Text == "")
                 {
                     repetidor.DataSource = control.listar();
                     repetidor.DataBind();
@@ -96,31 +123,45 @@ namespace WebApplication
         protected void AgregarCarrito_Click(object sender, EventArgs e)
         {
 
-            
+
             Controler control = new Controler();
 
             try
             {
-                int contador = 0;
-                string ID = ((Button)sender).CommandArgument;
-                Articulos art;
-                art = control.listar().Find(x => x.Id == int.Parse(ID));
-                
 
-                
-                List<Articulos> listaVieja = new List<Articulos>();
-                if (Session["ListaVieja"] != null)
+                if (Session["UsuarioActivo"] == null)
                 {
-                    listaVieja = Session["ListaVieja"] as List<Articulos>;
+                    Response.Redirect("Login.aspx", false);
                 }
-                
-                listaVieja.Add(art);
+                else
+                {
 
-                Session["ListaVieja"] = listaVieja;
 
-                List<Articulos> listaCarritoSessions = Session["ListaVieja"] as List<Articulos>;
-                contador = listaCarritoSessions.Count;
-                labelCantidad.Text = contador.ToString();
+                    int contador = 0;
+                    string ID = ((Button)sender).CommandArgument;
+                    Articulos art;
+                    art = control.listar().Find(x => x.Id == int.Parse(ID));
+
+
+
+                    List<Articulos> listaVieja = new List<Articulos>();
+                    if (Session["ListaVieja"] != null)
+                    {
+                        listaVieja = Session["ListaVieja"] as List<Articulos>;
+                    }
+
+                    listaVieja.Add(art);
+
+                    Session["ListaVieja"] = listaVieja;
+
+                    List<Articulos> listaCarritoSessions = Session["ListaVieja"] as List<Articulos>;
+                    contador = listaCarritoSessions.Count;
+                    labelCantidad.Text = contador.ToString();
+
+
+                }
+
+
 
             }
             catch (Exception ex)

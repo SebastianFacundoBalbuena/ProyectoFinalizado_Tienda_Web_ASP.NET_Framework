@@ -11,6 +11,7 @@ namespace WebApplication
 {
     public partial class Registrarse : System.Web.UI.Page
     {
+        public string Pass {  get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -28,7 +29,7 @@ namespace WebApplication
             {
                 Usuarios NewUsuario = new Usuarios();
                 Controler control = new Controler();
-                Usuarios ValidarEmail = new Usuarios();
+                bool ValidarEmail = false;
                 
 
                 
@@ -40,9 +41,9 @@ namespace WebApplication
                 NewUsuario.TipoDeUsuario = 0;
                 NewUsuario.ImagenDePerfil = "https://img.freepik.com/vector-premium/icono-marco-fotos-foto-vacia-blanco-vector-sobre-fondo-transparente-aislado-eps-10_399089-1290.jpg";
 
-                ValidarEmail = control.ValidarUsuario(NewUsuario);
+                ValidarEmail = control.TodosLosUsuarios(NewUsuario);
 
-                if(ValidarEmail.Email != null)
+                if(ValidarEmail == true)
                 {
                     Session.Add("Error", "Ya existe un usuario con el Email ingresado");
                     Response.Redirect("Error.aspx", false);
@@ -63,6 +64,30 @@ namespace WebApplication
                 Response.Redirect("Error.aspx", false);
             }
 
+        }
+
+        protected void CheckContraseñaVisible_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                bool esCheck = CheckContraseñaVisible.Checked;
+
+
+                if (esCheck == true)
+                {
+                    Pass = barraContraseña.Text;
+                }
+                else
+                {
+                    Pass = "";
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Session.Add("Error", ex.ToString());
+                Response.Redirect("Error", false);
+            }
         }
     }
 }

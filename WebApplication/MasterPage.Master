@@ -27,15 +27,24 @@
     <form id="form1" runat="server" class="d-flex flex-column flex-grow-1">
         <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark" style="height: 80px; display: flex; align-items: center; justify-content: center">
             <div style="margin: 15px">
-                <a style="margin-left: 10px" class="navbar-brand" href="#">New Origins</a>
+                <a style="margin-left: 10px" class="navbar-brand" href="#">New Origin</a>
                 <br />
+                <%if (Session["UsuarioActivo"] != null)
+                    {
+                        Dominio.Usuarios usuario = new Dominio.Usuarios();
+                        usuario = (Dominio.Usuarios)Session["UsuarioActivo"];
+                        if (usuario != null && usuario.TipoDeUsuario == 1)
+                        {%>
+
                 <a style="font-size: 15px;" href="Default.aspx">Modo administrador</a>
+                <%}
+                    } %>
             </div>
             <a href="PerfilDeUsuario.aspx">
-                <img id="IconoImagen" runat="server" style="height: 40px; border-radius:45% ; width: 40px" src="https://img.freepik.com/vector-premium/icono-marco-fotos-foto-vacia-blanco-vector-sobre-fondo-transparente-aislado-eps-10_399089-1290.jpg" alt="..." /></a>
+                <img id="IconoImagen" runat="server" style="height: 40px; border-radius: 45%; width: 40px" src="https://img.freepik.com/vector-premium/icono-marco-fotos-foto-vacia-blanco-vector-sobre-fondo-transparente-aislado-eps-10_399089-1290.jpg" alt="..." /></a>
         </nav>
         <hr />
-        <div class="container content" >
+        <div class="container content">
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
         </div>

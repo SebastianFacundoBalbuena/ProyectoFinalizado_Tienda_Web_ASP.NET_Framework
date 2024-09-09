@@ -12,6 +12,7 @@ namespace WebApplication
     public partial class PerfilDeUsuario : System.Web.UI.Page
     {
 		public Usuarios usuario { get; set; }
+		public string Pass { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
 			try
@@ -100,6 +101,31 @@ namespace WebApplication
         {
 			Session.Remove("UsuarioActivo");
 			Response.Redirect("Login.aspx", false);
+        }
+
+        protected void CheckContraseñaVisible_CheckedChanged(object sender, EventArgs e)
+        {
+			try
+			{
+                bool esCheck = CheckContraseñaVisible.Checked;
+
+
+                if (esCheck == true)
+                {
+                    Pass = barraContraseña.Text;
+                }
+                else
+                {
+                    Pass = "";
+                }
+            }
+			catch (Exception ex)
+			{
+
+                Session.Add("Error", ex.ToString());
+                Response.Redirect("Error", false);
+			}
+
         }
     }
 }
