@@ -13,8 +13,7 @@
             <asp:Button Text="Volver" CssClass="btn" runat="server" ID="Button1" OnClick="Inicio_Click"
                 Style="background-color: #007bff; border-color: #007bff; color: white; margin: 6px;" />
         </div>
-        <div class="card-footer" style="background-color: #007bff; color: white;">
-        </div>
+
     </div>
 
     <br />

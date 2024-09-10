@@ -33,7 +33,7 @@
     <asp:ScriptManager runat="server" />
     <asp:UpdatePanel runat="server">
         <ContentTemplate>
-            <script type="text/javascript">
+            <script  type="text/javascript">
                 google.charts.load('current', { 'packages': ['corechart'] });
                 google.charts.setOnLoadCallback(drawChart);
 
@@ -57,7 +57,7 @@
             </script>
 
             <div style="border: 1px solid #ddd; border-radius: 8px; background-color: #fff; padding: 20px;">
-                <div id="chart_div" style="width: 100%; height: 400px; margin-bottom: 20px;"></div>
+                <div id="chart_div" style="width: 100%; height: 400px; margin-bottom: 20px;overflow:auto"></div>
                 <div style="overflow: scroll; height: 340px">
                     <h5 style="margin-top: 0;">Detalles:</h5>
                     <asp:GridView runat="server" class="table" ID="panelReportes" AutoGenerateColumns="false"
@@ -72,5 +72,5 @@
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>
-    </div>
+    
 </asp:Content>

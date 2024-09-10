@@ -164,7 +164,7 @@
                     <div class="card-body">
                         <blockquote class="blockquote">
                             <p class="mb-0">"Compra fácil y rápida. Los electrodomésticos llegaron a tiempo y en perfectas condiciones."</p>
-                            <footer class="blockquote-footer">Brenda Villacorta</footer>
+                            <footer class="blockquote-footer">Sebastian Balbuena</footer>
                         </blockquote>
                     </div>
                 </div>
