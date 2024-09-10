@@ -126,7 +126,7 @@
                 <label class="form-label" style="color: #343a40;">Descripcion</label>
                 <asp:TextBox runat="server" CssClass="form-control" ID="barradescripcion" Style="border-color: #ced4da;" />
             </div>
-            <img src="https://img.freepik.com/vector-premium/icono-marco-fotos-foto-vacia-blanco-vector-sobre-fondo-transparente-aislado-eps-10_399089-1290.jpg" runat="server" style="width: 100%; border: 1px solid #ced4da; border-radius: 5px;" id="panelImagen" />
+            <img src="https://img.freepik.com/vector-premium/icono-marco-fotos-foto-vacia-blanco-vector-sobre-fondo-transparente-aislado-eps-10_399089-1290.jpg" runat="server" style="width: 100%; border: 1px solid #ced4da; border-radius: 5px; height:400px" id="panelImagen" />
         </div>
     </div>
 
